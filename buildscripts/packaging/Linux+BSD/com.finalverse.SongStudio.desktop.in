@@ -1,0 +1,15 @@
+[Desktop Entry]
+# Write keys in the order specified by the Freedesktop Desktop Entry specification.
+Type=Application
+Version=1.0
+Name=@DESKTOP_LAUNCHER_NAME@
+GenericName=Music creation and notation
+Comment=Compose, arrange, play, and publish music in one editable workspace
+Icon=mscore@MUSE_APP_INSTALL_SUFFIX@
+Exec=mscore@MUSE_APP_INSTALL_SUFFIX@ %U
+Terminal=false
+MimeType=application/x-musescore;application/x-musescore+xml;x-scheme-handler/musescore;application/vnd.recordare.musicxml;application/vnd.recordare.musicxml+xml;application/x-mei+xml;audio/midi;application/x-bww;application/x-biab;application/x-capella;audio/x-gtp;application/x-musedata;application/x-overture;audio/x-ptb;application/x-tef;application/x-sf2;application/x-sf3;
+Categories=AudioVideo;Audio;Graphics;2DGraphics;VectorGraphics;RasterGraphics;Publishing;Midi;Mixer;Sequencer;Music;Qt;
+Keywords=music;notation;composition;composing;arranging;songwriting;lyrics;sheet music;score;tablature;MIDI;musicxml;playback;instrument;AI;
+StartupNotify=true
+StartupWMClass=@WINDOW_MANAGER_CLASS@

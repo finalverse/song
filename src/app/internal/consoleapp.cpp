@@ -68,7 +68,7 @@ MuseScoreConsoleApp::MuseScoreConsoleApp(const std::shared_ptr<MuseScoreCmdOptio
 void MuseScoreConsoleApp::showSplash()
 {
     std::cout << "================================================" << std::endl;
-    std::cout << "The MuseScore console application is starting..." << std::endl;
+    std::cout << "The Finalverse Song Studio console application is starting..." << std::endl;
     std::cout << "================================================" << std::endl;
 }
 

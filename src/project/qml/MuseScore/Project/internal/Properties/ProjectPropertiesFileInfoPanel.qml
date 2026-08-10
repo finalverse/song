@@ -78,7 +78,7 @@ ColumnLayout {
 
         PropertyItem {
             index: 2
-            propertyName: qsTrc("project/properties", "MuseScore Studio version:")
+            propertyName: qsTrc("project/properties", "Application version:")
             propertyValue: root.propertiesModel.version
             isFileInfoPanelProperty: true
 

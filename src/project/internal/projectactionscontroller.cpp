@@ -1668,7 +1668,7 @@ void ProjectActionsController::warnCorruptedScoreCannotBeSavedOnCloud(const std:
     IInteractive::Text text;
     text.text = muse::trc("project", "This score has become corrupted and contains errors. "
                                      "You can fix the errors manually, or save the score to your computer "
-                                     "and get help for this issue on MuseScore.org.");
+                                     "and get help for this issue through Song support.");
     text.detailedText = errorText;
 
     IInteractive::ButtonDatas buttons;
@@ -1707,10 +1707,10 @@ bool ProjectActionsController::askIfUserAgreesToSaveCorruptedScoreLocally(const 
     IInteractive::Text text;
     text.text = !canRevert
                 ? muse::trc("project", "You can continue saving it locally, although the file may become unusable. "
-                                       "You can try to fix the errors manually, or get help for this issue on MuseScore.org.")
+                                       "You can try to fix the errors manually, or get help for this issue through Song support.")
                 : muse::trc("project", "You can continue saving it locally, although the file may become unusable. "
                                        "To preserve your score, revert to the last saved version, or fix the errors manually. "
-                                       "You can also get help for this issue on MuseScore.org.");
+                                       "You can also get help for this issue through Song support.");
     text.detailedText = errorText;
 
     IInteractive::ButtonDatas buttons;
@@ -1760,7 +1760,7 @@ void ProjectActionsController::showErrCorruptedScoreCannotBeSaved(const SaveLoca
                         : muse::trc("project", "Your score cannot be uploaded to the cloud");
 
     IInteractive::Text text;
-    text.text = muse::trc("project", "This score is corrupted. You can get help for this issue on MuseScore.org.");
+    text.text = muse::trc("project", "This score is corrupted. You can get help for this issue through Song support.");
     text.detailedText = errorText;
 
     IInteractive::ButtonData getHelpBtn(IInteractive::Button::CustomButton, muse::trc("project", "Get help"));
@@ -1794,7 +1794,7 @@ int ProjectActionsController::warnScoreHasBecomeCorruptedAfterSave(const Ret& re
 {
     const QString errDetailsMessage = QString::fromStdString(ret.toString()).toHtmlEscaped();
 
-    const QString supportForumLink = String("<a href=\"%1\" style=\"text-decoration: none\">MuseScore.org</a>")
+    const QString supportForumLink = String("<a href=\"%1\" style=\"text-decoration: none\">Song support</a>")
                                      .arg(configuration()->supportForumUrl().toString());
 
     const std::string title = muse::trc("project/save", "An error occurred while saving your score");
@@ -1922,16 +1922,16 @@ bool ProjectActionsController::askIfUserAgreesToOpenProjectWithIncompatibleVersi
 void ProjectActionsController::warnFileTooNew(const muse::io::path_t& filepath)
 {
     interactive()->error(muse::qtrc("project", "Cannot read file %1").arg(io::toNativeSeparators(filepath).toQString()).toStdString(),
-                         muse::mtrc("project", "This file was saved using a newer version of MuseScore Studio. "
-                                               "Please visit <a href=\"%1\">MuseScore.org</a> to obtain the latest version.")
-                         .arg(u"https://musescore.org").toStdString());
+                         muse::mtrc("project", "This file uses a newer version of the MuseScore-compatible score format. "
+                                               "Please visit <a href=\"%1\">the Song website</a> to obtain the latest version.")
+                         .arg(u"https://song.finalverse.com").toStdString());
 }
 
 bool ProjectActionsController::askIfUserAgreesToOpenCorruptedProject(const String& projectName, const std::string& errorText)
 {
     std::string title = muse::mtrc("project", "File “%1” is corrupted").arg(projectName).toStdString();
     IInteractive::Text text;
-    text.text = muse::trc("project", "This file contains errors that could cause MuseScore Studio to malfunction.");
+    text.text = muse::trc("project", "This file contains errors that could cause Finalverse Song Studio to malfunction.");
     text.detailedText = errorText;
 
     IInteractive::ButtonData openAnywayBtn(IInteractive::Button::CustomButton, muse::trc("project", "Open anyway"), true /*accent*/);
@@ -1948,7 +1948,7 @@ void ProjectActionsController::warnProjectCriticallyCorrupted(const String& proj
 {
     std::string title = muse::mtrc("project", "File “%1” is corrupted and cannot be opened").arg(projectName).toStdString();
     IInteractive::Text text;
-    text.text = muse::trc("project", "Get help for this issue on MuseScore.org.");
+    text.text = muse::trc("project", "Get help for this issue through Song support.");
     text.detailedText = errorText;
 
     IInteractive::ButtonData getHelpBtn(IInteractive::Button::CustomButton, muse::trc("project", "Get help"), true /*accent*/);
@@ -1974,7 +1974,7 @@ void ProjectActionsController::warnProjectCannotBeOpened(const Ret& ret, const m
         break;
     case int(engraving::Err::FileOpenError):
         body = muse::trc("project",
-                         "This file could not be opened. Please make sure that MuseScore Studio has permission to read this file.");
+                         "This file could not be opened. Please make sure that Finalverse Song Studio has permission to read this file.");
         break;
     default:
         if (!ret.text().empty()) {

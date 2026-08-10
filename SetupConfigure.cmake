@@ -64,6 +64,12 @@ if(BUILD_MODE STREQUAL "RELEASE")
     set(MUSESCORE_ALLOW_UPDATE_ON_PRERELEASE OFF)
 endif()
 
+# Finalverse-owned services are not available yet. Use framework stubs instead
+# of connecting a Song build to MuseScore account, content, or update services.
+set(MUSE_MODULE_CLOUD OFF)
+set(MUSE_MODULE_LEARN OFF)
+set(MUSE_MODULE_UPDATE OFF)
+
 if (MUSE_APP_UNSTABLE)
     set(MUSE_APP_GUI_IDENTIFIER "${MUSE_APP_GUI_IDENTIFIER}Development")
 endif(MUSE_APP_UNSTABLE)

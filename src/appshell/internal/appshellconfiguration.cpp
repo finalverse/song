@@ -46,12 +46,11 @@ static const Settings::Key WELCOME_DIALOG_LAST_SHOWN_INDEX(module_name, "applica
 static const Settings::Key STARTUP_MODE_TYPE(module_name, "application/startup/modeStart");
 static const Settings::Key STARTUP_SCORE_PATH(module_name, "application/startup/startScore");
 
-static const std::string MUSESCORE_ONLINE_HANDBOOK_URL("https://handbook.musescore.org");
-
-static const std::string MUSESCORE_ASK_FOR_HELP_URL_PATH("/redirect/post/question");
-static const std::string MUSESCORE_ACCESSIBILITY_STATEMENT_URL_PATH("/about/musescore-studio-accessibility-statement");
-static const std::string MUSESCORE_FORUM_URL_PATH("/forum");
-static const std::string MUSESCORE_CONTRIBUTE_URL_PATH("/contribute");
+static const std::string FINALVERSE_SONG_HANDBOOK_URL("https://github.com/finalverse/song/tree/main/docs");
+static const std::string FINALVERSE_SONG_ASK_FOR_HELP_URL("https://github.com/finalverse/song/issues/new");
+static const std::string FINALVERSE_SONG_ACCESSIBILITY_URL("https://finalverse.com/song");
+static const std::string FINALVERSE_SONG_FORUM_URL("https://github.com/finalverse/song/discussions");
+static const std::string FINALVERSE_SONG_CONTRIBUTE_URL("https://github.com/finalverse/song");
 static const std::string MUSEHUB_FREE_MUSE_SOUNDS_URL("https://www.musehub.com/free-musesounds"
                                                       "?utm_source=mss-app-dialog-ms-free"
                                                       "&utm_medium=mss-app-dialog-ms-free"
@@ -60,8 +59,6 @@ static const std::string MUSEHUB_FREE_MUSE_SOUNDS_URL("https://www.musehub.com/f
 static const std::string MUSICXML_URL("https://w3.org");
 static const std::string MUSICXML_LICENSE_URL(MUSICXML_URL + "/community/about/process/final/");
 static const std::string MUSICXML_LICENSE_DEED_URL(MUSICXML_URL + "/community/about/process/fsa-deed/");
-
-static const std::string UTM_MEDIUM_MENU("menu");
 
 static const Settings::Key SPLASH_SCREEN_VISIBLE_KEY(module_name, "ui/application/startup/showSplashScreen");
 
@@ -174,32 +171,17 @@ async::Notification AppShellConfiguration::startupScorePathChanged() const
 
 std::string AppShellConfiguration::handbookUrl() const
 {
-    std::string utm = utmParameters(UTM_MEDIUM_MENU);
-    std::string languageCode = currentLanguageCode();
-
-    QStringList params = {
-        "tag=handbook",
-        "locale=" + QString::fromStdString(languageCode),
-        QString::fromStdString(utm)
-    };
-
-    return MUSESCORE_ONLINE_HANDBOOK_URL + "?" + params.join("&").toStdString();
+    return FINALVERSE_SONG_HANDBOOK_URL;
 }
 
 std::string AppShellConfiguration::askForHelpUrl() const
 {
-    std::string languageCode = currentLanguageCode();
-
-    QStringList params = {
-        "locale=" + QString::fromStdString(languageCode)
-    };
-
-    return museScoreUrl() + MUSESCORE_ASK_FOR_HELP_URL_PATH + "?" + params.join("&").toStdString();
+    return FINALVERSE_SONG_ASK_FOR_HELP_URL;
 }
 
 std::string AppShellConfiguration::accessibilityStatementUrl() const
 {
-    return museScoreUrl() + MUSESCORE_ACCESSIBILITY_STATEMENT_URL_PATH;
+    return FINALVERSE_SONG_ACCESSIBILITY_URL;
 }
 
 std::string AppShellConfiguration::museScoreUrl() const
@@ -209,12 +191,12 @@ std::string AppShellConfiguration::museScoreUrl() const
 
 std::string AppShellConfiguration::museScoreForumUrl() const
 {
-    return museScoreUrl() + MUSESCORE_FORUM_URL_PATH;
+    return FINALVERSE_SONG_FORUM_URL;
 }
 
 std::string AppShellConfiguration::museScoreContributionUrl() const
 {
-    return museScoreUrl() + MUSESCORE_CONTRIBUTE_URL_PATH;
+    return FINALVERSE_SONG_CONTRIBUTE_URL;
 }
 
 std::string AppShellConfiguration::museHubFreeMuseSoundsUrl() const
@@ -308,7 +290,7 @@ std::string AppShellConfiguration::utmParameters(const std::string& utmMedium) c
 {
     return "utm_source=desktop&utm_medium=" + utmMedium
            + "&utm_content=" + application()->revision().toStdString()
-           + "&utm_campaign=MuseScore" + application()->version().toStdString();
+           + "&utm_campaign=FinalverseSong" + application()->version().toStdString();
 }
 
 std::string AppShellConfiguration::currentLanguageCode() const

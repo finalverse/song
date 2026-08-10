@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+tools/security/check_staged_secrets.sh
+
 ((${BASH_VERSION%%.*} >= 4)) || { echo >&2 "$0: Error: Please upgrade Bash."; exit 1; }
 
 set -euo pipefail

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>com.finalverse.SongStudio@MUSE_APP_INSTALL_SUFFIX@</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0-only</project_license>
+    <name>Finalverse Song Studio</name>
+    <summary>AI-native music creation, composition, and notation</summary>
+    <description>
+        <p>Finalverse Song Studio is an open-source music creation workspace for composing, arranging, playing, and publishing editable music.</p>
+        <p>Song is built on the MuseScore Studio notation and engraving engine. It supports professional score and part creation, tablature, playback, printing, MIDI, MusicXML, and existing MuseScore-compatible files.</p>
+        <p>Finalverse is building a modular, provider-neutral music intelligence layer whose suggestions remain previewable, editable, and undoable.</p>
+    </description>
+    <url type="homepage">https://song.finalverse.com/</url>
+    <url type="bugtracker">https://github.com/finalverse/song/issues</url>
+    <url type="vcs-browser">https://github.com/finalverse/song</url>
+    <url type="contribute">https://github.com/finalverse/song</url>
+    <launchable type="desktop-id">com.finalverse.SongStudio@MUSE_APP_INSTALL_SUFFIX@.desktop</launchable>
+    <provides>
+        <binary>mscore@MUSE_APP_INSTALL_SUFFIX@</binary>
+        <id>com.finalverse.SongStudio@MUSE_APP_INSTALL_SUFFIX@.desktop</id>
+    </provides>
+    <supports>
+        <control>pointing</control>
+        <control>keyboard</control>
+        <control>console</control>
+        <control>touch</control>
+    </supports>
+    <developer id="com.finalverse">
+        <name>Finalverse Inc.</name>
+    </developer>
+    <translation type="qt">mscore@MUSE_APP_INSTALL_SUFFIX@-@MUSE_APP_VERSION_MAJ_MIN@/locale/instruments</translation>
+    <translation type="qt">mscore@MUSE_APP_INSTALL_SUFFIX@-@MUSE_APP_VERSION_MAJ_MIN@/locale/musescore</translation>
+    <translation type="qt">mscore@MUSE_APP_INSTALL_SUFFIX@-@MUSE_APP_VERSION_MAJ_MIN@/locale/qt</translation>
+    <translation type="qt">mscore@MUSE_APP_INSTALL_SUFFIX@-@MUSE_APP_VERSION_MAJ_MIN@/locale/qtbase</translation>
+    <content_rating type="oars-1.1" />
+</component>

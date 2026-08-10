@@ -39,7 +39,7 @@ BaseSection {
         id: needCheckBox
         width: parent.width
 
-        text: qsTrc("preferences", "Check to see if a new version of MuseScore Studio is available")
+        text: qsTrc("preferences", "Check to see if a new version of Finalverse Song Studio is available")
 
         visible: root.isAppUpdatable
 
@@ -55,7 +55,7 @@ BaseSection {
     StyledTextLabel {
         width: parent.width
 
-        text: qsTrc("preferences", "Update checking requires network access. In order to protect your privacy, MuseScore Studio does not store any personal information. See our <a href=\"%1\">privacy policy</a> for more info.")
+        text: qsTrc("preferences", "Update checking requires network access. Finalverse Song Studio does not send project content when checking for updates. See our <a href=\"%1\">privacy policy</a> for more information.")
               .arg(root.museScorePrivacyPolicyUrl)
               .replace("\n", "<br>")
 

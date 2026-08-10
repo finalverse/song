@@ -53,7 +53,7 @@ EOF
 }
 
 function printVersion() {
-  local pretty=$(sed -rn "s|^Name=([^#]*)|\1|p" "${APPDIR}/org.musescore.MuseScore@MUSE_APP_INSTALL_SUFFIX@.desktop")
+  local pretty=$(sed -rn "s|^Name=([^#]*)|\1|p" "${APPDIR}/com.finalverse.SongStudio@MUSE_APP_INSTALL_SUFFIX@.desktop")
   local long=$("${APPDIR}/bin/mscore@MUSE_APP_INSTALL_SUFFIX@" --long-version 2>&1 | tail -n 1)
   if [ "$1" == "centered" ]; then
     printf "%*s\n" "$(((${#pretty}+80)/2))" "$pretty"
@@ -183,8 +183,8 @@ EOF
       echo "Please enter 'm', 'c', 'n', or 'h'. ('h' shows help)"
     done
   fi
-  sed -ri "s|^Exec=[^#%]*(.*)\$|Exec=${APPIMAGE} \1|" "share/applications/org.musescore.MuseScore@MUSE_APP_INSTALL_SUFFIX@.desktop"
-  echo "Finished installing MuseScore to $prefix"
+  sed -ri "s|^Exec=[^#%]*(.*)\$|Exec=${APPIMAGE} \1|" "share/applications/com.finalverse.SongStudio@MUSE_APP_INSTALL_SUFFIX@.desktop"
+  echo "Finished installing Finalverse Song Studio to $prefix"
 cat <<EOF
 Step 3 of 3.
 Symlinks can be created to make it easier to launch MuseScore from

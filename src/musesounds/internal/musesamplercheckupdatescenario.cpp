@@ -67,13 +67,13 @@ void MuseSamplerCheckUpdateScenario::showCriticalUpdateNotification()
     muse::IInteractive::ButtonData launchBtn(int(muse::IInteractive::Button::CustomButton) + 2,
                                              muse::trc("musesounds", "Quit & launch MuseSounds Manager"), true /*accent*/);
 
-    std::string msg = muse::trc("musesounds", "To apply this update, MuseScore Studio will need to close briefly and MuseSounds Manager will open. "
+    std::string msg = muse::trc("musesounds", "To apply this update, Finalverse Song Studio will need to close briefly and MuseSounds Manager will open. "
                                               "Your MuseSounds libraries won’t work until the update is complete.");
 #else
     muse::IInteractive::ButtonData launchBtn(int(muse::IInteractive::Button::CustomButton) + 2,
                                              muse::trc("musesounds", "Quit & launch MuseHub"), true /*accent*/);
 
-    std::string msg = muse::trc("musesounds", "To apply this update, MuseScore Studio will need to close briefly and MuseHub will open. "
+    std::string msg = muse::trc("musesounds", "To apply this update, Finalverse Song Studio will need to close briefly and MuseHub will open. "
                                               "Your MuseSounds libraries won’t work until the update is complete.");
 #endif
 
@@ -96,15 +96,15 @@ void MuseSamplerCheckUpdateScenario::showNewVersionNotification()
                                              muse::trc("musesounds", "Quit & launch MuseSounds Manager"), true /*accent*/);
 
     std::string msg = muse::trc("musesounds", "To keep MuseSounds running smoothly, "
-                                              "MuseScore Studio needs to close briefly so MuseSounds Manager can apply the update. "
-                                              "You’ll need to restart MuseScore Studio when the update is complete.");
+                                              "Finalverse Song Studio needs to close briefly so MuseSounds Manager can apply the update. "
+                                              "You’ll need to restart Finalverse Song Studio when the update is complete.");
 #else
     muse::IInteractive::ButtonData launchBtn(int(muse::IInteractive::Button::CustomButton) + 2,
                                              muse::trc("musesounds", "Quit & launch MuseHub"), true /*accent*/);
 
     std::string msg = muse::trc("musesounds", "To keep MuseSounds running smoothly, "
-                                              "MuseScore Studio needs to close briefly so MuseHub can apply the update. "
-                                              "You’ll be prompted to relaunch MuseScore Studio when it’s ready.");
+                                              "Finalverse Song Studio needs to close briefly so MuseHub can apply the update. "
+                                              "You’ll be prompted to relaunch Finalverse Song Studio when it’s ready.");
 #endif
 
     interactive()->info(muse::trc("musesounds", "An update for MuseSounds is available"), msg,

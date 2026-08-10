@@ -87,7 +87,7 @@ QVariantMap AboutModel::musicXMLLicenseDeedUrl() const
 void AboutModel::copyRevisionToClipboard() const
 {
     QGuiApplication::clipboard()->setText(
-        QString("OS: %1, Arch.: %2, MuseScore Studio version (%3-bit): %4-%5, revision: github-musescore-musescore-%6")
+        QString("OS: %1, Arch.: %2, Finalverse Song Studio version (%3-bit): %4-%5, revision: github-finalverse-song-%6")
         .arg(QSysInfo::prettyProductName()
              + ((QSysInfo::productType() == "windows" && (QSysInfo::productVersion() == "10" || QSysInfo::productVersion() == "11"))
                 ? " or later" : ""))

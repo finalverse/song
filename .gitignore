@@ -55,6 +55,16 @@ vtest/Pictures
 .vs
 dependencies
 
+# Local credentials and provider configuration
+.env
+.env.*
+!.env.example
+*.key
+*.p12
+*.pem
+/credentials*.json
+/secrets/
+
 # Downloaded files during build process
 VERSION
 /mscore/data/mscore.aps

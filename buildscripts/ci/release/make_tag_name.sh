@@ -152,4 +152,4 @@ if ((RELEASE_TYPE_COUNT > 1)); then
 fi
 
 echo "TAG_NAME=${TAG_NAME}"
-echo "RELEASE_NAME=MuseScore Studio ${PRETTY_VERSION} ${RELEASE_LABEL}"
+echo "RELEASE_NAME=Finalverse Song Studio ${PRETTY_VERSION} ${RELEASE_LABEL}"

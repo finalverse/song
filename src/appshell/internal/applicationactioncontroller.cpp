@@ -352,8 +352,8 @@ void ApplicationActionController::revertToFactorySettings()
         static constexpr bool NOTIFY_OTHER_INSTANCES = false;
         configuration()->revertToFactorySettings(KEEP_DEFAULT_SETTINGS, NOTIFY_ABOUT_CHANGES, NOTIFY_OTHER_INSTANCES);
 
-        std::string title = muse::trc("appshell", "Would you like to restart MuseScore Studio now?");
-        std::string question = muse::trc("appshell", "MuseScore Studio needs to be restarted for these changes to take effect.");
+        std::string title = muse::trc("appshell", "Would you like to restart Finalverse Song Studio now?");
+        std::string question = muse::trc("appshell", "Finalverse Song Studio needs to be restarted for these changes to take effect.");
 
         int restartBtn = int(IInteractive::Button::Apply);
         auto promise = interactive()->question(title, question,

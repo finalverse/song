@@ -575,10 +575,10 @@ std::shared_ptr<MuseScoreCmdOptions> CommandLineParser::options() const
 void CommandLineParser::printLongVersion() const
 {
     if (BaseApplication::appUnstable()) {
-        printf("MuseScore: Music Score Editor\nUnstable Prerelease for Version %s; Build %s\n",
+        printf("Finalverse Song Studio: AI-native music creation\nUnstable prerelease for version %s; Build %s\n",
                BaseApplication::appVersion().toStdString().c_str(), BaseApplication::appRevision().toStdString().c_str());
     } else {
-        printf("MuseScore: Music Score Editor; Version %s; Build %s\n",
+        printf("Finalverse Song Studio: AI-native music creation; Version %s; Build %s\n",
                BaseApplication::appVersion().toStdString().c_str(), BaseApplication::appRevision().toStdString().c_str());
     }
 }

@@ -31,7 +31,7 @@ import MuseScore.AppShell
 StyledDialogView {
     id: root
 
-    title: qsTrc("appshell/about", "About MuseScore Studio")
+    title: qsTrc("appshell/about", "About Finalverse Song Studio")
 
     contentHeight: 424
     contentWidth: 480
@@ -59,7 +59,7 @@ StyledDialogView {
                 id: logo
                 Layout.alignment: Qt.AlignHCenter
 
-                source: "resources/mu_logo.svg"
+                source: "resources/song_logo.svg"
                 sourceSize: Qt.size(100, 100)
 
                 MouseArea {
@@ -112,13 +112,12 @@ StyledDialogView {
                 text: {
                     let museScoreUrl = aboutModel.museScoreUrl()
 
-                    //: %1 will be a link to the MuseScore website
-                    let line1 = qsTrc("appshell/about", "Visit %1 for new versions and more information.")
+                    //: %1 will be a link to the Finalverse Song website
+                    let line1 = qsTrc("appshell/about", "Visit %1 for Song news and product information.")
                                 .arg(`<a href="${museScoreUrl.url}">${museScoreUrl.displayName}</a>`)
 
-                    let line2 = qsTrc("appshell/about", "Get <a href=\"%1\">help</a> with the program or <a href=\"%2\">contribute</a> to its development.")
-                                .arg(aboutModel.museScoreForumUrl().url)
-                                .arg(aboutModel.museScoreContributionUrl().url)
+                    let line2 = qsTrc("appshell/about", "Finalverse Song Studio is open source. <a href=\"%1\">Contribute on GitHub</a>.")
+                                .arg("https://github.com/finalverse/song")
 
                     return line1 + "<br>" + line2
                 }
@@ -138,12 +137,12 @@ StyledDialogView {
 
             StyledTextLabel {
                 Layout.fillWidth: true
-                text: qsTrc("appshell/about", "Copyright © 1999-2026 MuseScore Limited and others.\nPublished under the <a href=\"%1\">GNU General Public License version 3</a>.")
+                text: qsTrc("appshell/about", "Copyright © 2026 Finalverse Inc.\nBased on MuseScore Studio, copyright © 1999-2026 MuseScore Limited and contributors.\nPublished under the <a href=\"%1\">GNU General Public License version 3</a>.")
                       .arg("https://www.gnu.org/licenses/gpl-3.0.html")
                       .replace("\n", "<br>")
 
                 wrapMode: Text.WordWrap
-                maximumLineCount: 3
+                maximumLineCount: 4
             }
         }
 
