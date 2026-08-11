@@ -17,7 +17,6 @@
 #include "global/types/retval.h"
 
 namespace finalverse::song::ai {
-
 using AiRequestId = std::string;
 
 enum class AiPrivacyMode {
@@ -107,5 +106,4 @@ private:
     struct Data;
     std::shared_ptr<Data> m_data;
 };
-
 }

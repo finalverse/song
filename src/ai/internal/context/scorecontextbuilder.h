@@ -12,7 +12,6 @@
 #include "iscorecontextbuilder.h"
 
 namespace finalverse::song::ai {
-
 class ScoreContextBuilder : public IScoreContextBuilder, public muse::Contextable
 {
     muse::ContextInject<mu::context::IGlobalContext> globalContext = { this };
@@ -25,5 +24,4 @@ public:
 
     muse::RetVal<ScoreContext> build(const ScoreContextRequest& request) const override;
 };
-
 }

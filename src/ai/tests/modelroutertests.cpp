@@ -34,8 +34,8 @@ public:
         ++submitCount;
         AiRequestHandle handle(request.id);
         handle.finish(AiResult::make_ok(AiResponse {
-            request.id, m_id, "fake", "complete", true
-        }));
+                request.id, m_id, "fake", "complete", true
+            }));
         return handle;
     }
 

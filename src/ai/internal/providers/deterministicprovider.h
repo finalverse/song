@@ -9,7 +9,6 @@
 #include "iaiprovider.h"
 
 namespace finalverse::song::ai {
-
 class DeterministicProvider : public IAiProvider
 {
 public:
@@ -21,5 +20,4 @@ public:
     AiRequestHandle submit(const AiRequest& request) override;
     void cancel(const AiRequestId& requestId) override;
 };
-
 }

@@ -59,7 +59,8 @@ IAiProviderPtr ModelRouter::providerFor(const AiRequest& request) const
     const std::vector<IAiProviderPtr> availableProviders = providers();
 
     if (!request.preferredProviderId.empty()) {
-        const auto preferred = std::find_if(availableProviders.begin(), availableProviders.end(), [&request](const IAiProviderPtr& provider) {
+        const auto preferred = std::find_if(availableProviders.begin(),
+                                            availableProviders.end(), [&request](const IAiProviderPtr& provider) {
             return provider->id() == request.preferredProviderId
                    && provider->capabilities().supports(request.requirements, request.privacyMode);
         });
@@ -88,7 +89,7 @@ AiRequestHandle ModelRouter::submit(const AiRequest& request)
     if (!provider) {
         AiRequestHandle rejected(request.id);
         rejected.finish(AiResult::make_ret(AiError::NoCompatibleProvider,
-                                          "No AI provider satisfies the request capabilities and privacy mode"));
+                                           "No AI provider satisfies the request capabilities and privacy mode"));
         return rejected;
     }
 

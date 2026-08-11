@@ -201,7 +201,7 @@ case $TARGET in
 
         ln -sf . usr # we installed into the root of our AppImage but some tools expect a "usr" subdirectory
         mscore="mscore${MUSE_APP_INSTALL_SUFFIX}"
-        desktop="org.musescore.MuseScore${MUSE_APP_INSTALL_SUFFIX}.desktop"
+        desktop="com.finalverse.SongStudio${MUSE_APP_INSTALL_SUFFIX}.desktop"
         icon="${mscore}.png"
         mani="install_manifest.txt"
         cp "share/applications/${desktop}" "${desktop}"
@@ -225,7 +225,7 @@ case $TARGET in
 
         ln -sf . usr # we installed into the root of our AppImage but some tools expect a "usr" subdirectory
         mscore="mscore${MUSE_APP_INSTALL_SUFFIX}"
-        desktop="org.musescore.MuseScore${MUSE_APP_INSTALL_SUFFIX}.desktop"
+        desktop="com.finalverse.SongStudio${MUSE_APP_INSTALL_SUFFIX}.desktop"
         icon="${mscore}.png"
         mani="install_manifest.txt"
         cp "share/applications/${desktop}" "${desktop}"

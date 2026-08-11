@@ -12,7 +12,6 @@
 #include "imodelrouter.h"
 
 namespace finalverse::song::ai {
-
 class AiService : public IAiService
 {
 public:
@@ -25,5 +24,4 @@ public:
 private:
     std::shared_ptr<IModelRouter> m_router;
 };
-
 }

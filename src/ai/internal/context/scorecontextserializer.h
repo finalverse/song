@@ -11,11 +11,9 @@
 #include "scorecontexttypes.h"
 
 namespace finalverse::song::ai {
-
 class ScoreContextSerializer
 {
 public:
     std::string toJson(const ScoreSnapshot& snapshot) const;
 };
-
 }

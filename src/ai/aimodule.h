@@ -11,7 +11,6 @@
 #include "modularity/imodulesetup.h"
 
 namespace finalverse::song::ai {
-
 class IAiService;
 class IModelRouter;
 
@@ -37,5 +36,4 @@ public:
 
     void registerExports() override;
 };
-
 }

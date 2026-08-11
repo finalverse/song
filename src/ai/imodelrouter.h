@@ -15,7 +15,6 @@
 #include "iaiprovider.h"
 
 namespace finalverse::song::ai {
-
 class IModelRouter : MODULE_GLOBAL_INTERFACE
 {
     INTERFACE_ID(IModelRouter)
@@ -31,5 +30,4 @@ public:
     virtual AiRequestHandle submit(const AiRequest& request) = 0;
     virtual void cancel(const AiRequestId& requestId) = 0;
 };
-
 }

@@ -14,7 +14,6 @@
 #include "aitypes.h"
 
 namespace finalverse::song::ai {
-
 class IAiService : MODULE_GLOBAL_INTERFACE
 {
     INTERFACE_ID(IAiService)
@@ -26,5 +25,4 @@ public:
     virtual AiRequestHandle submit(const AiRequest& request) = 0;
     virtual void cancel(const AiRequestId& requestId) = 0;
 };
-
 }

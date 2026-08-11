@@ -12,7 +12,6 @@
 #include "imodelrouter.h"
 
 namespace finalverse::song::ai {
-
 class ModelRouter : public IModelRouter
 {
 public:
@@ -31,5 +30,4 @@ private:
     mutable std::mutex m_mutex;
     std::vector<IAiProviderPtr> m_providers;
 };
-
 }
