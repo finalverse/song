@@ -64,6 +64,7 @@ fi
 
 VERSION="$(cmake -P version.cmake | sed -n "s|^-- MUSE_APP_VERSION ||p")"
 int="(0|[1-9][0-9]*)"
+ALLOW_FIRST_RELEASE="${ALLOW_FIRST_RELEASE:-false}"
 
 if [[ ! "${VERSION}" =~ ^${int}\.${int}\.${int}$ ]]; then
     echo >&2 "$o: Badly formed version from version.cmake: ${VERSION}"
@@ -103,10 +104,14 @@ else
 fi
 
 if ! version_exists "${older_version}"; then
-    # Assume VERSION isn't the very first release.
-    echo >&2 "$o: Error: Version is ${VERSION} but no tag exists for ${older_version}."
-    echo >&2 "You need to reduce the version numbers in version.cmake to avoid skipping releases."
-    exit 1
+    all_tags="$(git tag --list)"
+    if [[ "${ALLOW_FIRST_RELEASE}" == 'true' && -z "${all_tags}" ]]; then
+        echo >&2 "$o: Creating the first release tag in this repository."
+    else
+        echo >&2 "$o: Error: Version is ${VERSION} but no tag exists for ${older_version}."
+        echo >&2 "You need to reduce the version numbers in version.cmake to avoid skipping releases."
+        exit 1
+    fi
 fi
 
 RELEASE_TYPE_COUNT=1

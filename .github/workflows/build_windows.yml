@@ -83,6 +83,10 @@ concurrency:
   group: ${{ github.workflow }} ${{ github.event_name }} ${{ github.ref }} windows
   cancel-in-progress: true
 
+env:
+  FINALVERSE_SONG_WINDOWS_STABLE_UPGRADE_GUID: CBBE5E4E-07D3-4411-96FE-1AC4E4A7C1BC
+  FINALVERSE_SONG_WINDOWS_TESTING_UPGRADE_GUID: 0090A2D8-2876-4A5B-B36E-94046F364EA6
+
 jobs:
   windows_x64:
     if: inputs.platforms == '' || contains(inputs.platforms, 'windows_x64')
@@ -173,7 +177,7 @@ jobs:
         if [ "${{ github.event_name }}" == "pull_request" ]; then
           ADD_INFO="_${{ github.event.pull_request.number }}_${pull_request_title}"
         fi
-        UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"MU4_${BUILD_NUMBER}_Win${ADD_INFO}")"
+        UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"Song_${BUILD_NUMBER}_Win${ADD_INFO}")"
 
         echo "github.repository: ${{ github.repository }}"
         echo "BUILD_MODE=$BUILD_MODE" | tee -a $GITHUB_ENV
@@ -244,7 +248,7 @@ jobs:
       run: |
         IF ${{ secrets.WIN_SIGN_S3_SECRET != 0 }} == true ( SET S_S=${{ secrets.WIN_SIGN_S3_SECRET }} ) ELSE ( SET S_S="''" )
         IF ${{ secrets.WIN_SIGN_S3_KEY != 0 }} == true ( SET S_K=${{ secrets.WIN_SIGN_S3_KEY }} ) ELSE ( SET S_K="''" )
-        IF ${{ env.BUILD_MODE }} == stable ( SET GUID=${{ secrets.WIN_MSI_STABLE_MU4_GUID }} ) ELSE ( SET GUID=${{ secrets.WIN_MSI_TESTING_MU4_GUID }} )
+        IF ${{ env.BUILD_MODE }} == stable ( SET GUID=%FINALVERSE_SONG_WINDOWS_STABLE_UPGRADE_GUID% ) ELSE ( SET GUID=%FINALVERSE_SONG_WINDOWS_TESTING_UPGRADE_GUID% )
         buildscripts\ci\windows\package.bat --signsecret %S_S% --signkey %S_K% --guid %GUID%
     - name: Checksum
       run: |
@@ -341,7 +345,7 @@ jobs:
         if [ "${{ github.event_name }}" == "pull_request" ]; then
           ADD_INFO="_${{ github.event.pull_request.number }}_${pull_request_title}"
         fi
-        UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"MU4_${BUILD_NUMBER}_Win_portable${ADD_INFO}")"
+        UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"Song_${BUILD_NUMBER}_Win_portable${ADD_INFO}")"
 
         echo "github.repository: ${{ github.repository }}"
         echo "BUILD_MODE=$BUILD_MODE" | tee -a $GITHUB_ENV
