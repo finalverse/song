@@ -90,7 +90,9 @@ env:
 jobs:
   windows_x64:
     if: inputs.platforms == '' || contains(inputs.platforms, 'windows_x64')
-    runs-on: windows-2025
+    # Qt's win64_msvc2022_64 package must be built with the matching VS2022
+    # toolchain. windows-2025 currently selects VS18/MSVC 14.51 via vswhere.
+    runs-on: windows-2022
     steps:
     - name: Clone repository
       uses: actions/checkout@v7
@@ -298,7 +300,7 @@ jobs:
       github.event_name != 'pull_request' &&
       inputs.framework_ref == '' &&
       (github.event_name != 'workflow_dispatch' || contains(inputs.platforms, 'windows_portable'))
-    runs-on: windows-2025
+    runs-on: windows-2022
     steps:
     - name: Clone repository
       uses: actions/checkout@v7
