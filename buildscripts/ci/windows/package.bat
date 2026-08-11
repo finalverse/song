@@ -138,6 +138,18 @@ ECHO on
 ECHO "PACKAGE_UUID: %PACKAGE_UUID%"
 ECHO off
 
+:: CPack can compile generated packaging targets, so initialize the MSVC
+:: include/lib environment in this fresh workflow shell before invoking it.
+SET VSWHERE="C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
+FOR /f "usebackq tokens=*" %%i in (`%VSWHERE% -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
+    SET VS_INSTALL_DIR=%%i
+)
+IF NOT DEFINED VS_INSTALL_DIR (
+    ECHO "error: Visual Studio C++ toolchain not found"
+    GOTO END_ERROR
+)
+CALL "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars64.bat" || GOTO END_ERROR
+
 cd "%BUILD_DIR%" 
 cmake -DCPACK_WIX_PRODUCT_GUID=%PACKAGE_UUID% ^
     -DCPACK_WIX_UPGRADE_GUID=%UPGRADE_UUID% ^
