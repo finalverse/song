@@ -31,7 +31,9 @@ enum class AiError {
     ContextTooLarge,
     NoCompatibleProvider,
     Canceled,
-    ProviderFailure
+    ProviderFailure,
+    NoActiveScore,
+    ContextSerializationFailed
 };
 
 struct AiRequestRequirements {

@@ -13,10 +13,18 @@ target_sources(ai PRIVATE
     iaiprovider.h
     iaisecretstore.h
     iaiservice.h
+    iscorecontextbuilder.h
     imodelrouter.h
+    scorecontexttypes.h
 
     internal/aiservice.cpp
     internal/aiservice.h
+    internal/context/scorecontextbudgeter.cpp
+    internal/context/scorecontextbudgeter.h
+    internal/context/scorecontextbuilder.cpp
+    internal/context/scorecontextbuilder.h
+    internal/context/scorecontextserializer.cpp
+    internal/context/scorecontextserializer.h
     internal/modelrouter.cpp
     internal/modelrouter.h
     internal/providers/deterministicprovider.cpp
@@ -24,6 +32,8 @@ target_sources(ai PRIVATE
     internal/security/ailogredactor.cpp
     internal/security/ailogredactor.h
 )
+
+target_link_libraries(ai PRIVATE context engraving notation)
 
 if (MUE_BUILD_AI_TESTS)
     add_subdirectory(tests)

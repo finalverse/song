@@ -368,10 +368,6 @@ std::shared_ptr<muse::IApplication> AppFactory::newGuiApp(const std::shared_ptr<
     app->addModule(new muse::media::MediaModule());
 
 // modules
-#ifdef MUE_BUILD_AI_MODULE
-    app->addModule(new finalverse::song::ai::AiModule());
-#endif
-
 #ifdef MUE_BUILD_APPSHELL_MODULE
     app->addModule(new mu::appshell::AppShellModule());
 #endif
@@ -438,6 +434,9 @@ std::shared_ptr<muse::IApplication> AppFactory::newGuiApp(const std::shared_ptr<
     app->addModule(new muse::mi::MultiWindowsModule());
     app->addModule(new mu::musesounds::MuseSoundsModule());
     app->addModule(new mu::notation::NotationModule());
+#ifdef MUE_BUILD_AI_MODULE
+    app->addModule(new finalverse::song::ai::AiModule());
+#endif
     app->addModule(new mu::notation::NotationSceneModule());
     app->addModule(new mu::palette::PaletteModule());
     app->addModule(new mu::playback::PlaybackModule());

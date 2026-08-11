@@ -19,10 +19,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # Modules must be listed in dependency order
-if (MUE_BUILD_AI_MODULE)
-    add_subdirectory(ai)
-endif()
-
 if (MUE_BUILD_BRAILLE_MODULE)
     add_subdirectory(braille)
 else()
@@ -61,6 +57,10 @@ if (MUE_BUILD_NOTATION_MODULE)
     add_subdirectory(notation)
 else()
     add_subdirectory(stubs/notation)
+endif()
+
+if (MUE_BUILD_AI_MODULE)
+    add_subdirectory(ai)
 endif()
 
 if (MUE_BUILD_NOTATIONSCENE_MODULE)
