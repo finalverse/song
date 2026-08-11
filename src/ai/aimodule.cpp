@@ -11,6 +11,7 @@
 #include "iaiservice.h"
 #include "imodelrouter.h"
 #include "internal/aiservice.h"
+#include "internal/context/scorecontextbuilder.h"
 #include "internal/modelrouter.h"
 #include "internal/providers/deterministicprovider.h"
 
@@ -36,4 +37,14 @@ void AiModule::registerExports()
 
     globalIoc()->registerExport<IModelRouter>(MODULE_NAME, m_router);
     globalIoc()->registerExport<IAiService>(MODULE_NAME, m_service);
+}
+
+IContextSetup* AiModule::newContext(const ContextPtr& context) const
+{
+    return new AiModuleContext(context);
+}
+
+void AiModuleContext::registerExports()
+{
+    ioc()->registerExport<IScoreContextBuilder>(MODULE_NAME, new ScoreContextBuilder(iocContext()));
 }

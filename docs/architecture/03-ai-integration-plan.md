@@ -4,6 +4,8 @@
 
 Milestone 2.1 is implemented in `src/ai/`: the module is optional at compile time, exposes provider-neutral request/service/router contracts, enforces explicit context budgets and local-only routing, supports cancellation and streaming result handles, includes a deterministic offline provider, defines a platform secret-store boundary without an insecure fallback, and redacts common credential shapes from diagnostics. It contains no provider SDK, cloud endpoint, or score mutation path.
 
+The first Milestone 2.2 slice is also implemented: `IScoreContextBuilder` synchronously copies a selection-scoped view of the active notation into `finalverse.song.score-context.v1`. The snapshot includes revision and score metadata, selection bounds, parts and instruments, musical context, selected notes, and lyrics. Serialization is deterministic and bounded by explicit event and byte limits; truncation and unavailable fields are visible in the payload. The returned context owns all of its data and retains no engraving pointers. Whole-score and additional event types remain future extensions of the versioned schema.
+
 ## Architectural goal
 
 Add music intelligence without coupling the score engine to a model vendor or allowing model output to mutate engraving objects directly.

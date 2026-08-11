@@ -1,0 +1,58 @@
+{
+  "schema": "finalverse.song.score-context.v1",
+  "project_revision": 7,
+  "native_format_version": 500,
+  "master_score": true,
+  "project_name": "Golden Song",
+  "work_title": "Living Score",
+  "notation_name": "Full score",
+  "selection": {
+    "kind": "range",
+    "start_tick": { "numerator": 0, "denominator": 1 },
+    "end_tick": { "numerator": 1, "denominator": 1 },
+    "start_staff_index": 0,
+    "end_staff_index_exclusive": 1,
+    "element_count": 2,
+    "source_note_count": 1
+  },
+  "musical_context": {
+    "tempo_bpm": 120,
+    "concert_key_fifths": 0,
+    "meter": { "numerator": 4, "denominator": 4 }
+  },
+  "parts": [
+    {
+      "id": "part-1",
+      "name": "Voice",
+      "instrument_id": "voice",
+      "instrument_name": "Voice",
+      "staff_count": 1,
+      "visible": true,
+      "pitched": true,
+      "tablature": false,
+      "percussion": false
+    }
+  ],
+  "notes": [
+    {
+      "element_id": "note-1",
+      "tick": { "numerator": 0, "denominator": 1 },
+      "duration": { "numerator": 1, "denominator": 4 },
+      "midi_pitch": 60,
+      "staff_index": 0,
+      "voice": 0
+    }
+  ],
+  "lyrics": [
+    {
+      "element_id": "lyric-1",
+      "chord_element_id": "chord-1",
+      "tick": { "numerator": 0, "denominator": 1 },
+      "melisma_duration": { "numerator": 0, "denominator": 1 },
+      "verse": 0,
+      "text": "Song"
+    }
+  ],
+  "truncated": false,
+  "omitted_fields": ["project_stable_id:not_available"]
+}
