@@ -18,12 +18,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-echo "Package MuseScore"
+echo "Package Finalverse Song Studio"
 trap 'echo Package failed; exit 1' ERR
 
 ARTIFACTS_DIR="build.artifacts"
-SIGN_CERTIFICATE_ENCRYPT_SECRET="''"
-SIGN_CERTIFICATE_PASSWORD="''"
+SIGN_CERTIFICATE_ENCRYPT_SECRET="${SIGN_CERTIFICATE_ENCRYPT_SECRET:-}"
+SIGN_CERTIFICATE_PASSWORD="${SIGN_CERTIFICATE_PASSWORD:-}"
 
 SIGN_ARGS=""
 
@@ -36,14 +36,11 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-if [ -z "$SIGN_CERTIFICATE_ENCRYPT_SECRET" ]; then echo "warning: not set SIGN_CERTIFICATE_ENCRYPT_SECRET"; fi
-if [ -z "$SIGN_CERTIFICATE_PASSWORD" ]; then echo "warning: not set SIGN_CERTIFICATE_PASSWORD"; fi
-
-echo "SIGN_CERTIFICATE_ENCRYPT_SECRET: $SIGN_CERTIFICATE_ENCRYPT_SECRET"
-echo "SIGN_CERTIFICATE_PASSWORD: $SIGN_CERTIFICATE_PASSWORD"
+if [ -z "$SIGN_CERTIFICATE_ENCRYPT_SECRET" ]; then echo "warning: signing certificate is not configured"; fi
+if [ -z "$SIGN_CERTIFICATE_PASSWORD" ]; then echo "warning: signing certificate password is not configured"; fi
 
 # Setup keychain for code sign
-if [ "$SIGN_CERTIFICATE_ENCRYPT_SECRET" != "''" ]; then
+if [ -n "$SIGN_CERTIFICATE_ENCRYPT_SECRET" ] && [ -n "$SIGN_CERTIFICATE_PASSWORD" ]; then
 
     7z x -y ./buildscripts/ci/macos/resources/mac_musescore.p12.enc -o./buildscripts/ci/macos/resources/ -p${SIGN_CERTIFICATE_ENCRYPT_SECRET}
 
@@ -71,23 +68,22 @@ VERSION_MAJOR="$(cut -d'.' -f1 <<<"$BUILD_VERSION")"
 VERSION_MINOR="$(cut -d'.' -f2 <<<"$BUILD_VERSION")"
 VERSION_PATCH="$(cut -d'.' -f3 <<<"$BUILD_VERSION")"
 
-# TODO: rename to MuseScore Studio (https://github.com/musescore/MuseScore/issues/32235)
-APP_NAME="MuseScore $VERSION_MAJOR"
+APP_NAME="Finalverse Song Studio"
 if [ "$BUILD_MODE" == "devel" ]; then
-    APP_NAME="MuseScore $BUILD_VERSION Development"
-    VOL_NAME="MuseScore-Studio-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${BUILD_NUMBER}-${BUILD_REVISION}"
+    APP_NAME="Finalverse Song Studio Development"
+    VOL_NAME="Finalverse-Song-Studio-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${BUILD_NUMBER}-${BUILD_REVISION}"
 fi
 if [ "$BUILD_MODE" == "nightly" ]; then
-    APP_NAME="MuseScore $BUILD_VERSION Nightly"
-    VOL_NAME="MuseScore-Studio-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${BUILD_NUMBER}-${BUILD_REVISION}"
+    APP_NAME="Finalverse Song Studio Nightly"
+    VOL_NAME="Finalverse-Song-Studio-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${BUILD_NUMBER}-${BUILD_REVISION}"
 fi
 if [ "$BUILD_MODE" == "testing" ]; then
-    APP_NAME="MuseScore $BUILD_VERSION Testing"
-    VOL_NAME="MuseScore-Studio-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${BUILD_NUMBER}-${BUILD_REVISION}"
+    APP_NAME="Finalverse Song Studio Testing"
+    VOL_NAME="Finalverse-Song-Studio-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${BUILD_NUMBER}-${BUILD_REVISION}"
 fi
 if [ "$BUILD_MODE" == "stable" ]; then
-    APP_NAME="MuseScore $VERSION_MAJOR"
-    VOL_NAME="MuseScore-Studio-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
+    APP_NAME="Finalverse Song Studio"
+    VOL_NAME="Finalverse-Song-Studio-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
 fi
 
 buildscripts/packaging/macOS/package.sh --app-name "$APP_NAME" --vol-name "$VOL_NAME" $SIGN_ARGS
@@ -97,9 +93,9 @@ echo "DMGFILE: $DMGFILE"
 
 if [ "$BUILD_MODE" == "nightly" ]; then
     BUILD_BRANCH=$(cat $ARTIFACTS_DIR/env/build_branch.env)
-    ARTIFACT_NAME=MuseScore-Studio-Nightly-${BUILD_NUMBER}-${BUILD_BRANCH}-${BUILD_REVISION}.dmg
+    ARTIFACT_NAME=Finalverse-Song-Studio-Nightly-${BUILD_NUMBER}-${BUILD_BRANCH}-${BUILD_REVISION}.dmg
 else
-    ARTIFACT_NAME=MuseScore-Studio-${BUILD_VERSION}.dmg
+    ARTIFACT_NAME=Finalverse-Song-Studio-${BUILD_VERSION}.dmg
 fi
 
 mv $DMGFILE $ARTIFACTS_DIR/$ARTIFACT_NAME

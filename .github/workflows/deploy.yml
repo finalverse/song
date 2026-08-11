@@ -5,7 +5,7 @@ on:
     inputs:
       platforms:
         description: 'Platforms to build:'
-        default: 'backend linux_arm64 linux_x64 macos windows_x64 windows_portable'
+        default: 'linux_arm64 linux_x64 macos windows_x64'
         required: true
       release_type:
         description: 'Release type: alpha,beta,rc,stable, or any label with chars A-Za-z0-9._ for testing'
@@ -20,6 +20,9 @@ defaults:
   run:
     shell: bash
 
+permissions:
+  contents: read
+
 jobs:
 
   plan:
@@ -29,16 +32,17 @@ jobs:
       tag_name: ${{ steps.make_tag_info.outputs.TAG_NAME }}
       release_name: ${{ steps.make_tag_info.outputs.RELEASE_NAME }}
     steps:
-    - name: Clone repo with history
+    - name: Clone repository with tags
       uses: actions/checkout@v7
       with:
-        submodules: recursive
-        fetch-depth: 0 # entire history for all branches and tags
+        fetch-depth: 1
+        fetch-tags: true
     - id: make_tag_info
       name: Make tag info
       env:
         RELEASE_TYPE: ${{ inputs.release_type }}
         CREATE_TAG: ${{ inputs.create_tag }}
+        ALLOW_FIRST_RELEASE: 'true'
       run: |
         git tag --list | tail -n 20
         echo ==========
@@ -64,9 +68,9 @@ jobs:
     with:
       platforms: ${{ inputs.platforms }}
       build_mode: ${{ inputs.release_type == 'stable' && 'stable' || 'testing' }}
-      publish: ${{ inputs.create_tag && 'on' || 'off' }}
-      deploy_backend: 'on'
-      sentry_project: ${{ (inputs.create_tag && inputs.release_type == 'stable') && 'mu4' || 'sandbox' }}
+      publish: 'off'
+      deploy_backend: 'off'
+      sentry_project: ''
 
   update_learn_playlists:
     name: 'Update Home→Learn playlists'
@@ -82,17 +86,17 @@ jobs:
     name: 'Create release: ${{ needs.plan.outputs.tag_name }}'
     needs:
       - plan # to access outputs
-      - update_learn_playlists
+      - build
     if: ${{ ! failure() && ! cancelled() && inputs.create_tag }} # run even if prior jobs were skipped
     runs-on: ubuntu-slim
+    permissions:
+      contents: write
     environment:
       name: production # requires approval
       url: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.plan.outputs.tag_name }}
     steps:
     - name: Clone repository
       uses: actions/checkout@v7
-      with:
-        submodules: recursive
     - name: Download and extract artifacts
       uses: actions/download-artifact@v8
       with:
@@ -126,6 +130,12 @@ jobs:
         tag_name: ${{ needs.plan.outputs.tag_name }}
         fail_on_unmatched_files: true
         generate_release_notes: false
+        body: |
+          First Finalverse Song Studio alpha build from the MuseScore Studio engraving foundation.
+
+          This draft release contains the Finalverse identity foundation, the provider-neutral AI runtime boundary, and read-only bounded score context. It does not include a cloud model provider or score mutation workflow.
+
+          Before publishing this draft, verify platform signing/notarization status, checksums, install/launch behavior, notation compatibility, and the known limitations in `docs/release/ALPHA-RELEASE.md`.
 
   notify_users:
     name: Notify users

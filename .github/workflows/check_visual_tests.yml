@@ -15,6 +15,7 @@ jobs:
     outputs:
       do_run: ${{ steps.output_data.outputs.do_run }}
       reference_ref: ${{ steps.output_data.outputs.reference_ref }}
+      current_ref: ${{ steps.output_data.outputs.current_ref }}
       artifact_name: ${{ steps.output_data.outputs.artifact_name }}
     steps:
     - name: Clone repository
@@ -33,22 +34,23 @@ jobs:
       if: github.event_name == 'pull_request'
       env:
         pull_request_title: ${{ github.event.pull_request.title }}
-        REFERENCE_REF: ${{ github.event.pull_request.base.ref }}
+        REFERENCE_REF: ${{ github.event.pull_request.base.sha }}
+        CURRENT_REF: ${{ github.event.pull_request.head.sha }}
       run: |
         if [ -z "$REFERENCE_REF" ]; then DO_RUN='false'; else DO_RUN='true'; fi
         echo "REFERENCE_REF=$REFERENCE_REF" >> $GITHUB_ENV
+        echo "CURRENT_REF=$CURRENT_REF" >> $GITHUB_ENV
         echo "DO_RUN=$DO_RUN" >> $GITHUB_ENV
         echo "PR_INFO= ${{ github.event.pull_request.number }} ${pull_request_title}" >> $GITHUB_ENV
-    - name: Get reference commit for push commit
-      if: github.event_name == 'push'
+    - name: Get reference commit for manual run
+      if: github.event_name == 'workflow_dispatch'
+      env:
+        REFERENCE_REF: ${{ github.event.repository.default_branch }}
+        CURRENT_REF: ${{ github.sha }}
       run: |
-        REFERENCE_REF=${{ github.event.before }}
-        if [[ -z "$REFERENCE_REF" || "$REFERENCE_REF" == 0000000000000000000000000000000000000000 ]]; then
-          DO_RUN='false'
-        else
-          DO_RUN='true'
-        fi
+        if [ -z "$REFERENCE_REF" ]; then DO_RUN='false'; else DO_RUN='true'; fi
         echo "REFERENCE_REF=$REFERENCE_REF" >> $GITHUB_ENV
+        echo "CURRENT_REF=$CURRENT_REF" >> $GITHUB_ENV
         echo "DO_RUN=$DO_RUN" >> $GITHUB_ENV
         echo "PR_INFO=" >> $GITHUB_ENV
     - id: output_data
@@ -56,6 +58,7 @@ jobs:
       run: |
         echo "do_run=${DO_RUN}" | tee -a $GITHUB_OUTPUT
         echo "reference_ref=${REFERENCE_REF}" | tee -a $GITHUB_OUTPUT
+        echo "current_ref=${CURRENT_REF}" | tee -a $GITHUB_OUTPUT
         UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"VTests Comparison ${BUILD_NUMBER}${PR_INFO}")"
         echo "artifact_name=$UPLOAD_ARTIFACT_NAME" | tee -a $GITHUB_OUTPUT
 
@@ -136,6 +139,16 @@ jobs:
       with:
         ref: ${{ needs.setup.outputs.reference_ref }}
         submodules: recursive
+
+    # Keep the score/rendering source at the reference commit while using the
+    # current build harness. This lets a PR repair packaging without the stale
+    # reference harness blocking generation of the visual baseline.
+    - name: Use current visual-test build harness
+      env:
+        CURRENT_REF: ${{ needs.setup.outputs.current_ref }}
+      run: |
+        git fetch --no-tags --depth=1 origin "$CURRENT_REF"
+        git checkout FETCH_HEAD -- ninja_build.sh
 
     - parallel:
       - name: Restore ccache files

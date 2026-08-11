@@ -12,7 +12,6 @@
 #include <vector>
 
 namespace finalverse::song::ai {
-
 struct RationalSnapshot {
     int numerator = 0;
     int denominator = 1;
@@ -111,5 +110,4 @@ struct ScoreContext {
     std::string serialized;
     std::size_t estimatedTokens = 0;
 };
-
 }

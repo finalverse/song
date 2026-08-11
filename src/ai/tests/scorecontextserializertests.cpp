@@ -34,14 +34,14 @@ ScoreSnapshot goldenSnapshot()
     snapshot.musicalContext.concertKeyFifths = 0;
     snapshot.musicalContext.meter = RationalSnapshot { 4, 4 };
     snapshot.parts.push_back(PartSnapshot {
-        "part-1", "Voice", "voice", "Voice", 1, true, true, false, false
-    });
+            "part-1", "Voice", "voice", "Voice", 1, true, true, false, false
+        });
     snapshot.notes.push_back(NoteSnapshot {
-        "note-1", { 0, 1 }, { 1, 4 }, 60, 0, 0
-    });
+            "note-1", { 0, 1 }, { 1, 4 }, 60, 0, 0
+        });
     snapshot.lyrics.push_back(LyricSnapshot {
-        "lyric-1", "chord-1", { 0, 1 }, { 0, 1 }, 0, "Song"
-    });
+            "lyric-1", "chord-1", { 0, 1 }, { 0, 1 }, 0, "Song"
+        });
     snapshot.omittedFields.push_back("project_stable_id:not_available");
     return snapshot;
 }

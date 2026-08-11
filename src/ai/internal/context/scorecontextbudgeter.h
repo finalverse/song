@@ -13,11 +13,9 @@
 #include "scorecontexttypes.h"
 
 namespace finalverse::song::ai {
-
 class ScoreContextBudgeter
 {
 public:
     muse::Ret fit(ScoreSnapshot& snapshot, std::size_t maxSerializedBytes) const;
 };
-
 }

@@ -18,7 +18,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-echo "Package MuseScore"
+echo "Package Finalverse Song Studio"
 trap 'echo Package failed; exit 1' ERR
 
 df -h .
@@ -70,10 +70,10 @@ if [ "$BUILD_MODE" == "nightly" ]; then
   BUILD_NUMBER=$(cat $ARTIFACTS_DIR/env/build_number.env)
   BUILD_BRANCH=$(cat $ARTIFACTS_DIR/env/build_branch.env)
   BUILD_REVISION=$(cat $ARTIFACTS_DIR/env/build_revision.env)
-  ARTIFACT_NAME=MuseScore-Studio-Nightly-${BUILD_NUMBER}-${BUILD_BRANCH}-${BUILD_REVISION}-${PACKARCH}
+  ARTIFACT_NAME=Finalverse-Song-Studio-Nightly-${BUILD_NUMBER}-${BUILD_BRANCH}-${BUILD_REVISION}-${PACKARCH}
 else
   BUILD_VERSION=$(cat $ARTIFACTS_DIR/env/build_version.env)
-  ARTIFACT_NAME=MuseScore-Studio-${BUILD_VERSION}-${PACKARCH}
+  ARTIFACT_NAME=Finalverse-Song-Studio-${BUILD_VERSION}-${PACKARCH}
 fi
 
 if [ "$PACKTYPE" == "7z" ]; then
@@ -87,7 +87,7 @@ if [ "$PACKTYPE" == "appimage" ]; then
     # To enable automatic updates for AppImages, set UPDATE_INFORMATION according to
     # https://github.com/AppImage/AppImageSpec/blob/master/draft.md#update-information
     case "${BUILD_MODE}" in
-    "stable")  export UPDATE_INFORMATION="gh-releases-zsync|musescore|MuseScore|latest|MuseScore-Studio-*${PACKARCH}.AppImage.zsync";;
+    "stable")  export UPDATE_INFORMATION="gh-releases-zsync|finalverse|song|latest|Finalverse-Song-Studio-*${PACKARCH}.AppImage.zsync";;
     "nightly") export UPDATE_INFORMATION="zsync|https://ftp.osuosl.org/pub/musescore-nightlies/linux/${MAJOR_VERSION}x/nightly/MuseScore-Studio-Nightly-latest-${BUILD_BRANCH}-${PACKARCH}.AppImage.zsync";;
     *) unset UPDATE_INFORMATION;; # disable updates for other build modes
     esac

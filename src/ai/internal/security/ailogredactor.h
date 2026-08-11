@@ -10,12 +10,10 @@
 #include <string_view>
 
 namespace finalverse::song::ai {
-
 class AiLogRedactor
 {
 public:
     static std::string redact(std::string_view message);
     static bool containsSensitiveMaterial(std::string_view message);
 };
-
 }

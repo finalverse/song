@@ -50,6 +50,8 @@ MUSESCORE_BUILD_WEBSOCKET=${MUSESCORE_BUILD_WEBSOCKET:-"OFF"}
 MUSESCORE_BUILD_PIPEWIRE_AUDIO_DRIVER=${MUSESCORE_BUILD_PIPEWIRE_AUDIO_DRIVER:-"OFF"}
 MUSESCORE_MODULE_DOCKWINDOW_KDDOCKWIDGETS_V2=${MUSESCORE_MODULE_DOCKWINDOW_KDDOCKWIDGETS_V2:-"ON"}
 MUSESCORE_COMPILE_USE_UNITY=${MUSESCORE_COMPILE_USE_UNITY:-"ON"}
+MUSESCORE_COMPILE_USE_PCH=${MUSESCORE_COMPILE_USE_PCH:-"ON"}
+MUSESCORE_COMPILE_USE_COMPILER_CACHE=${MUSESCORE_COMPILE_USE_COMPILER_CACHE:-"ON"}
 
 SHOW_HELP=0
 while [[ "$#" -gt 0 ]]; do
@@ -104,7 +106,9 @@ function do_build() {
         -DMUSE_MODULE_AUDIO_PIPEWIRE="${MUSESCORE_BUILD_PIPEWIRE_AUDIO_DRIVER}" \
         -DMUSE_MODULE_DOCKWINDOW_KDDOCKWIDGETS_V2="${MUSESCORE_MODULE_DOCKWINDOW_KDDOCKWIDGETS_V2}" \
         -DCMAKE_SKIP_RPATH="${MUSESCORE_NO_RPATH}" \
-        -DMUSE_COMPILE_USE_UNITY="${MUSESCORE_COMPILE_USE_UNITY}"
+        -DMUSE_COMPILE_USE_UNITY="${MUSESCORE_COMPILE_USE_UNITY}" \
+        -DMUSE_COMPILE_USE_PCH="${MUSESCORE_COMPILE_USE_PCH}" \
+        -DMUSE_COMPILE_USE_COMPILER_CACHE="${MUSESCORE_COMPILE_USE_COMPILER_CACHE}"
 
     ninja -j $JOBS
 }
@@ -178,6 +182,8 @@ case $TARGET in
             -DMUSE_MODULE_DIAGNOSTICS_CRASHREPORT_URL="${MUSESCORE_CRASHREPORT_URL}" \
             -DMUSE_MODULE_GLOBAL_LOGGER_DEBUGLEVEL="${MUSESCORE_DEBUGLEVEL_ENABLED}" \
             -DMUSE_MODULE_VST="${MUSESCORE_BUILD_VST_MODULE}" \
+            -DMUSE_COMPILE_USE_PCH="${MUSESCORE_COMPILE_USE_PCH}" \
+            -DMUSE_COMPILE_USE_COMPILER_CACHE="${MUSESCORE_COMPILE_USE_COMPILER_CACHE}" \
             -DCMAKE_SKIP_RPATH="${MUSESCORE_NO_RPATH}"
         ;;
 
@@ -201,7 +207,7 @@ case $TARGET in
 
         ln -sf . usr # we installed into the root of our AppImage but some tools expect a "usr" subdirectory
         mscore="mscore${MUSE_APP_INSTALL_SUFFIX}"
-        desktop="org.musescore.MuseScore${MUSE_APP_INSTALL_SUFFIX}.desktop"
+        desktop="com.finalverse.SongStudio${MUSE_APP_INSTALL_SUFFIX}.desktop"
         icon="${mscore}.png"
         mani="install_manifest.txt"
         cp "share/applications/${desktop}" "${desktop}"
@@ -225,7 +231,7 @@ case $TARGET in
 
         ln -sf . usr # we installed into the root of our AppImage but some tools expect a "usr" subdirectory
         mscore="mscore${MUSE_APP_INSTALL_SUFFIX}"
-        desktop="org.musescore.MuseScore${MUSE_APP_INSTALL_SUFFIX}.desktop"
+        desktop="com.finalverse.SongStudio${MUSE_APP_INSTALL_SUFFIX}.desktop"
         icon="${mscore}.png"
         mani="install_manifest.txt"
         cp "share/applications/${desktop}" "${desktop}"

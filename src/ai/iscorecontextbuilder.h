@@ -12,7 +12,6 @@
 #include "scorecontexttypes.h"
 
 namespace finalverse::song::ai {
-
 class IScoreContextBuilder : MODULE_CONTEXT_INTERFACE
 {
     INTERFACE_ID(IScoreContextBuilder)
@@ -24,5 +23,4 @@ public:
     // owns all data and contains no engraving or project pointers.
     virtual muse::RetVal<ScoreContext> build(const ScoreContextRequest& request) const = 0;
 };
-
 }

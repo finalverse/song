@@ -12,7 +12,6 @@
 #include "aitypes.h"
 
 namespace finalverse::song::ai {
-
 class IAiProvider
 {
 public:
@@ -25,5 +24,4 @@ public:
 };
 
 using IAiProviderPtr = std::shared_ptr<IAiProvider>;
-
 }

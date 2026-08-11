@@ -83,10 +83,16 @@ concurrency:
   group: ${{ github.workflow }} ${{ github.event_name }} ${{ github.ref }} windows
   cancel-in-progress: true
 
+env:
+  FINALVERSE_SONG_WINDOWS_STABLE_UPGRADE_GUID: CBBE5E4E-07D3-4411-96FE-1AC4E4A7C1BC
+  FINALVERSE_SONG_WINDOWS_TESTING_UPGRADE_GUID: 0090A2D8-2876-4A5B-B36E-94046F364EA6
+
 jobs:
   windows_x64:
     if: inputs.platforms == '' || contains(inputs.platforms, 'windows_x64')
-    runs-on: windows-2025
+    # Qt's win64_msvc2022_64 package must be built with the matching VS2022
+    # toolchain. windows-2025 currently selects VS18/MSVC 14.51 via vswhere.
+    runs-on: windows-2022
     steps:
     - name: Clone repository
       uses: actions/checkout@v7
@@ -173,7 +179,7 @@ jobs:
         if [ "${{ github.event_name }}" == "pull_request" ]; then
           ADD_INFO="_${{ github.event.pull_request.number }}_${pull_request_title}"
         fi
-        UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"MU4_${BUILD_NUMBER}_Win${ADD_INFO}")"
+        UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"Song_${BUILD_NUMBER}_Win${ADD_INFO}")"
 
         echo "github.repository: ${{ github.repository }}"
         echo "BUILD_MODE=$BUILD_MODE" | tee -a $GITHUB_ENV
@@ -185,19 +191,6 @@ jobs:
         echo "SENTRY_URL=$SENTRY_URL" | tee -a $GITHUB_ENV
         echo "DO_PUBLISH=$DO_PUBLISH" | tee -a $GITHUB_ENV
         echo "UPLOAD_ARTIFACT_NAME=$UPLOAD_ARTIFACT_NAME" | tee -a $GITHUB_ENV
-
-    # - parallel:
-    #   - name: Restore ccache files
-    #     id: restore-ccache
-    #     uses: actions/cache/restore@v6
-    #     with:
-    #       path: ${{ github.workspace }}/.ccache
-    #       key: ${{runner.os}}-${{runner.arch}}-ccache-
-    #       restore-keys: ${{runner.os}}-${{runner.arch}}-ccache-
-    #   - name: Setup ccache
-    #     run: |
-    #       choco install -y ccache
-    #       bash ./buildscripts/ci/tools/setup_ccache_config.sh
 
     - parallel:
       - name: Install Qt
@@ -236,16 +229,20 @@ jobs:
       run: |
         IF ${{ env.SENTRY_URL != 0 }} == true ( SET C_URL="${{ env.SENTRY_URL }}" ) ELSE ( SET C_URL="" )
         buildscripts\ci\windows\build.bat -n ${{ env.BUILD_NUMBER }} --crash_log_url %C_URL% --dockwidgets_v2 ${{ inputs.dockwidgets_v2 == 'ON' && 'ON' || 'OFF' }}
-    - name: Show ccache stats
-      run: |
-        ccache -sv
     - name: Package
       shell: cmd
+      env:
+        WIN_SIGN_S3_SECRET: ${{ secrets.WIN_SIGN_S3_SECRET }}
+        WIN_SIGN_S3_KEY: ${{ secrets.WIN_SIGN_S3_KEY }}
       run: |
-        IF ${{ secrets.WIN_SIGN_S3_SECRET != 0 }} == true ( SET S_S=${{ secrets.WIN_SIGN_S3_SECRET }} ) ELSE ( SET S_S="''" )
-        IF ${{ secrets.WIN_SIGN_S3_KEY != 0 }} == true ( SET S_K=${{ secrets.WIN_SIGN_S3_KEY }} ) ELSE ( SET S_K="''" )
-        IF ${{ env.BUILD_MODE }} == stable ( SET GUID=${{ secrets.WIN_MSI_STABLE_MU4_GUID }} ) ELSE ( SET GUID=${{ secrets.WIN_MSI_TESTING_MU4_GUID }} )
-        buildscripts\ci\windows\package.bat --signsecret %S_S% --signkey %S_K% --guid %GUID%
+        IF ${{ env.BUILD_MODE }} == stable ( SET GUID=%FINALVERSE_SONG_WINDOWS_STABLE_UPGRADE_GUID% ) ELSE ( SET GUID=%FINALVERSE_SONG_WINDOWS_TESTING_UPGRADE_GUID% )
+        SET "SIGNING_READY=false"
+        IF DEFINED WIN_SIGN_S3_SECRET IF DEFINED WIN_SIGN_S3_KEY SET "SIGNING_READY=true"
+        IF "%SIGNING_READY%" == "true" (
+          CALL buildscripts\ci\windows\package.bat --signsecret "%WIN_SIGN_S3_SECRET%" --signkey "%WIN_SIGN_S3_KEY%" --guid %GUID%
+        ) ELSE (
+          CALL buildscripts\ci\windows\package.bat --guid %GUID%
+        )
     - name: Checksum
       run: |
         bash ./buildscripts/ci/tools/checksum.sh
@@ -273,31 +270,20 @@ jobs:
         name: ${{ env.UPLOAD_ARTIFACT_NAME }}
         path: build.artifacts\
 
-    - name: Prepare ccache files for saving
-      id: prepare-save-ccache
-      if: always()
-      shell: bash
-      run: |
-        ccache --recompress 10
-        echo "CCACHE_TIMESTAMP=$(date -u +"%F-%T")" | tee -a $GITHUB_OUTPUT
-    - name: Save ccache files
-      if: always()
-      uses: actions/cache/save@v6
-      with:
-        key: ${{ steps.restore-ccache.outputs.cache-primary-key }}${{ steps.prepare-save-ccache.outputs.CCACHE_TIMESTAMP }}
-        path: ${{ github.workspace }}/.ccache
-
-
   windows_portable:
     # Disable on pull_request and on framework PR builds
     if: |
       github.event_name != 'pull_request' &&
       inputs.framework_ref == '' &&
       (github.event_name != 'workflow_dispatch' || contains(inputs.platforms, 'windows_portable'))
-    runs-on: windows-2025
+    runs-on: windows-2022
     steps:
     - name: Clone repository
       uses: actions/checkout@v7
+      with:
+        repository: ${{ inputs.app_repo || github.repository }}
+        ref: ${{ inputs.app_ref || github.ref }}
+        submodules: recursive
     - name: Configure workflow
       shell: bash
       env:
@@ -341,7 +327,7 @@ jobs:
         if [ "${{ github.event_name }}" == "pull_request" ]; then
           ADD_INFO="_${{ github.event.pull_request.number }}_${pull_request_title}"
         fi
-        UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"MU4_${BUILD_NUMBER}_Win_portable${ADD_INFO}")"
+        UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\\’' '_' <<<"Song_${BUILD_NUMBER}_Win_portable${ADD_INFO}")"
 
         echo "github.repository: ${{ github.repository }}"
         echo "BUILD_MODE=$BUILD_MODE" | tee -a $GITHUB_ENV
@@ -350,19 +336,6 @@ jobs:
         echo "DO_PLACEHOLDER_TRANSLATIONS=$DO_PLACEHOLDER_TRANSLATIONS" | tee -a $GITHUB_ENV
         echo "DO_PUBLISH=$DO_PUBLISH" | tee -a $GITHUB_ENV
         echo "UPLOAD_ARTIFACT_NAME=$UPLOAD_ARTIFACT_NAME" | tee -a $GITHUB_ENV
-
-    - parallel:
-      - name: Restore ccache files
-        id: restore-ccache
-        uses: actions/cache/restore@v6
-        with:
-          path: ${{ github.workspace }}/.ccache
-          key: ${{runner.os}}-${{runner.arch}}-ccache-
-          restore-keys: ${{runner.os}}-${{runner.arch}}-ccache-
-      - name: Setup ccache
-        run: |
-          choco install -y ccache
-          bash ./buildscripts/ci/tools/setup_ccache_config.sh
 
     - parallel:
       - name: Install Qt
@@ -399,15 +372,19 @@ jobs:
       run: |
         IF ${{ env.SENTRY_URL != 0 }} == true ( SET C_URL="${{ env.SENTRY_URL }}" ) ELSE ( SET C_URL="" )
         buildscripts\ci\windows\build.bat --portable ON -n ${{ env.BUILD_NUMBER }} --crash_log_url %C_URL% --dockwidgets_v2 ${{ inputs.dockwidgets_v2 == 'ON' && 'ON' || 'OFF' }}
-    - name: Show ccache stats
-      run: |
-        ccache -sv
     - name: Package
       shell: cmd
+      env:
+        WIN_SIGN_S3_SECRET: ${{ secrets.WIN_SIGN_S3_SECRET }}
+        WIN_SIGN_S3_KEY: ${{ secrets.WIN_SIGN_S3_KEY }}
       run: |
-        IF ${{ secrets.WIN_SIGN_S3_SECRET != 0 }} == true ( SET S_S=${{ secrets.WIN_SIGN_S3_SECRET }} ) ELSE ( SET S_S="''" )
-        IF ${{ secrets.WIN_SIGN_S3_KEY != 0 }} == true ( SET S_K=${{ secrets.WIN_SIGN_S3_KEY }} ) ELSE ( SET S_K="''" )
-        buildscripts\ci\windows\package.bat --portable ON  --signsecret %S_S% --signkey %S_K%
+        SET "SIGNING_READY=false"
+        IF DEFINED WIN_SIGN_S3_SECRET IF DEFINED WIN_SIGN_S3_KEY SET "SIGNING_READY=true"
+        IF "%SIGNING_READY%" == "true" (
+          CALL buildscripts\ci\windows\package.bat --portable ON --signsecret "%WIN_SIGN_S3_SECRET%" --signkey "%WIN_SIGN_S3_KEY%"
+        ) ELSE (
+          CALL buildscripts\ci\windows\package.bat --portable ON
+        )
     - name: Checksum
       run: |
         bash ./buildscripts/ci/tools/checksum.sh
@@ -421,20 +398,6 @@ jobs:
       with:
         name: ${{ env.UPLOAD_ARTIFACT_NAME }}
         path: build.artifacts\
-
-    - name: Prepare ccache files for saving
-      id: prepare-save-ccache
-      if: always()
-      shell: bash
-      run: |
-        ccache --recompress 10
-        echo "CCACHE_TIMESTAMP=$(date -u +"%F-%T")" | tee -a $GITHUB_OUTPUT
-    - name: Save ccache files
-      if: always()
-      uses: actions/cache/save@v6
-      with:
-        key: ${{ steps.restore-ccache.outputs.cache-primary-key }}${{ steps.prepare-save-ccache.outputs.CCACHE_TIMESTAMP }}
-        path: ${{ github.workspace }}/.ccache
 
   # windows_sign_test:
   #   if: github.event_name != 'workflow_dispatch' || contains(inputs.platforms, 'sign_test')
