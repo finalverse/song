@@ -85,6 +85,9 @@ set(MUSESCORE_REVISION "" CACHE STRING "Build revision")
 include(${MUSE_FRAMEWORK_SRC_PATH}/cmake/MuseDeclareOptions.cmake)
 
 # Modules (alphabetical order please)
+option(MUE_BUILD_AI_MODULE "Build Finalverse Song AI module" ON)
+option(MUE_BUILD_AI_TESTS "Build Finalverse Song AI tests" ${MUE_BUILD_AI_MODULE})
+
 option(MUE_BUILD_APPSHELL_MODULE "Build appshell module" ON)
 option(MUE_BUILD_APPSHELL_QML "Build appshell QML" ${MUE_BUILD_APPSHELL_MODULE})
 

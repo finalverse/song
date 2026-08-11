@@ -146,6 +146,10 @@
 #endif
 
 // Modules
+#ifdef MUE_BUILD_AI_MODULE
+#include "ai/aimodule.h"
+#endif
+
 #include "appshell/appshellmodule.h"
 
 #ifdef MUSE_MODULE_TESTFLOW
@@ -364,6 +368,10 @@ std::shared_ptr<muse::IApplication> AppFactory::newGuiApp(const std::shared_ptr<
     app->addModule(new muse::media::MediaModule());
 
 // modules
+#ifdef MUE_BUILD_AI_MODULE
+    app->addModule(new finalverse::song::ai::AiModule());
+#endif
+
 #ifdef MUE_BUILD_APPSHELL_MODULE
     app->addModule(new mu::appshell::AppShellModule());
 #endif
