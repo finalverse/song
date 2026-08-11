@@ -3,9 +3,10 @@
 echo "Package"
 trap 'echo Package failed; exit 1' ERR
 
-APP_NAME="MuseScore Studio"
-VOL_NAME="MuseScore-Studio"
+APP_NAME="Finalverse Song Studio"
+VOL_NAME="Finalverse-Song-Studio"
 DO_SIGN=false
+SIGNING_IDENTITY="${SIGNING_IDENTITY:-}"
 
 function change_rpath() {
    for P in `otool -L $1 | awk '{print $1}'`
@@ -55,7 +56,11 @@ otool -L ${APP_PATH}/Contents/MacOS/mscore
 
 echo "macdeployqt"
 if $DO_SIGN; then
-    sign_args="-sign-for-notarization=Developer ID Application: MuseScore"
+    if [[ -z "${SIGNING_IDENTITY}" ]]; then
+        echo "SIGNING_IDENTITY must name a Finalverse-owned Developer ID Application certificate"
+        exit 1
+    fi
+    sign_args="-sign-for-notarization=${SIGNING_IDENTITY}"
 else
     sign_args=""
 fi
@@ -106,7 +111,7 @@ if $DO_SIGN; then
     codesign --force \
         --options runtime \
         --entitlements "src/macos_integration/entitlements.plist" \
-        -s "Developer ID Application: MuseScore" \
+        -s "${SIGNING_IDENTITY}" \
         "${APP_PATH}/Contents/PlugIns/MuseScoreQuickLookPreviewExtension.appex"
 
     # Re-sign main app after removing dSYM files and renaming qml folder
@@ -115,7 +120,7 @@ if $DO_SIGN; then
         --deep \
         --options runtime \
         --entitlements "buildscripts/packaging/macOS/entitlements.plist" \
-        -s "Developer ID Application: MuseScore" \
+        -s "${SIGNING_IDENTITY}" \
         "${APP_PATH}"
 
     echo "Codesign verify"

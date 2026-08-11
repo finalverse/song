@@ -183,7 +183,7 @@ bool EditStyle::loadStyle(Transaction& tx, Score* score, muse::io::IODevice& dev
         tx.push(new ChangeStyle(score, st, overlap));
         success = true;
     } else {
-        LOGE() << "The style data is not compatible with this version of MuseScore Studio.";
+        LOGE() << "The style data is not compatible with this version of Finalverse Song Studio.";
     }
 
     dev.close();

@@ -1,0 +1,13 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="songMarkGradient" x1="260" y1="210" x2="770" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="0.52" stop-color="#FF5C8A"/>
+      <stop offset="1" stop-color="#2DE2C5"/>
+    </linearGradient>
+  </defs>
+  <path d="M731 291C667 224 563 196 460 214C345 234 272 298 272 377C272 458 348 493 482 515C622 538 749 566 749 664C749 755 655 817 530 826C416 835 316 794 263 725"
+        stroke="url(#songMarkGradient)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="731" cy="291" r="37" fill="#7C5CFF"/>
+  <circle cx="263" cy="725" r="37" fill="#2DE2C5"/>
+</svg>

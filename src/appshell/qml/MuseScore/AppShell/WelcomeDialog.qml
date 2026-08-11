@@ -111,6 +111,7 @@ StyledDialogView {
                     height: 48
                     width: prevButton.height
                     anchors.centerIn: prevButtonArea
+                    visible: model.count > 1
 
                     contentItem: StyledIconLabel {
                         iconCode: IconCode.CHEVRON_LEFT
@@ -161,6 +162,7 @@ StyledDialogView {
                     height: 48
                     width: nextButton.height
                     anchors.centerIn: nextButtonArea
+                    visible: model.count > 1
 
                     contentItem: StyledIconLabel {
                         iconCode: IconCode.CHEVRON_RIGHT
@@ -222,6 +224,7 @@ StyledDialogView {
 
             PageIndicator {
                 anchors.centerIn: indicatorArea
+                visible: model.count > 1
 
                 indicatorSize: 10
 

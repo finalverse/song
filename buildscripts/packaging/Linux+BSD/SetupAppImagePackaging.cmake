@@ -12,7 +12,7 @@ endif()
 if(MUSE_APP_UNSTABLE)
     # Use short name to avoid truncation by GNOME launcher. Save room for
     # a suffix in case multiple dev/nightly builds are installed.
-    set(DESKTOP_LAUNCHER_NAME "MU ${MUSE_APP_VERSION_MAJ_MIN}") # Muse X.Y
+    set(DESKTOP_LAUNCHER_NAME "Song ${MUSE_APP_VERSION_MAJ_MIN}")
 else(MUSE_APP_UNSTABLE)
     # Use full name for stable releases
     set(DESKTOP_LAUNCHER_NAME "${MUSE_APP_NAME_HUMAN_READABLE} ${MUSE_APP_VERSION_MAJ_MIN}") # Muse X.Y
@@ -68,8 +68,8 @@ else()
 endif()
 
 # Install desktop file (perform variable substitution first)
-configure_file(${CMAKE_CURRENT_LIST_DIR}/org.musescore.MuseScore.desktop.in org.musescore.MuseScore${MUSE_APP_INSTALL_SUFFIX}.desktop)
-install(FILES ${PROJECT_BINARY_DIR}/org.musescore.MuseScore${MUSE_APP_INSTALL_SUFFIX}.desktop DESTINATION share/applications)
+configure_file(${CMAKE_CURRENT_LIST_DIR}/com.finalverse.SongStudio.desktop.in com.finalverse.SongStudio${MUSE_APP_INSTALL_SUFFIX}.desktop)
+install(FILES ${PROJECT_BINARY_DIR}/com.finalverse.SongStudio${MUSE_APP_INSTALL_SUFFIX}.desktop DESTINATION share/applications)
 
 # Install appdata file (perform variable substitution first)
 if("${MUSE_APP_INSTALL_SUFFIX}" MATCHES "-")
@@ -80,8 +80,8 @@ if("${MUSE_APP_INSTALL_SUFFIX}" MATCHES "-")
     )
 endif("${MUSE_APP_INSTALL_SUFFIX}" MATCHES "-")
 
-configure_file(${CMAKE_CURRENT_LIST_DIR}/org.musescore.MuseScore.appdata.xml.in org.musescore.MuseScore${MUSE_APP_INSTALL_SUFFIX}.appdata.xml)
-install(FILES ${PROJECT_BINARY_DIR}/org.musescore.MuseScore${MUSE_APP_INSTALL_SUFFIX}.appdata.xml DESTINATION share/metainfo)
+configure_file(${CMAKE_CURRENT_LIST_DIR}/com.finalverse.SongStudio.appdata.xml.in com.finalverse.SongStudio${MUSE_APP_INSTALL_SUFFIX}.appdata.xml)
+install(FILES ${PROJECT_BINARY_DIR}/com.finalverse.SongStudio${MUSE_APP_INSTALL_SUFFIX}.appdata.xml DESTINATION share/metainfo)
 
 # Substitute variables within man pages
 set(MAN_NAME mscore)

@@ -1,95 +1,83 @@
-# ![MuseScore Studio](share/icons/musescore_logo_full.png)
+# Finalverse Song
 
-Music notation and composition software
+![Finalverse Song](branding/logo/song-lockup.svg)
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Coverage](https://s3.us-east-1.amazonaws.com/extensions.musescore.org/test/code_coverage/coverage_badge.svg?)](https://github.com/musescore/MuseScore/actions/workflows/check_unit_tests.yml)
+**From an idea to a living score.**
 
-MuseScore Studio is an open source and free music notation software. For support, contribution, and bug reports visit MuseScore.org. Fork and make pull requests!
+Finalverse Song is an open-source, AI-native music creation platform for composing, arranging, playing, collaborating on, and publishing music. The desktop application is **Finalverse Song Studio**.
 
-## Features
+Song is built on the MuseScore Studio notation and engraving engine. The project preserves professional score editing, playback, parts, tablature, printing, MusicXML, MIDI, Guitar Pro, and existing MuseScore-compatible files while building a provider-neutral music intelligence layer around them.
 
-- WYSIWYG design, notes are entered on a "virtual notepaper"
-- TrueType font(s) for printing & display allows for high quality scaling to all sizes
-- Easy & fast note entry
-- Many editing functions
-- MusicXML import/export
-- MIDI (SMF) import/export
-- MEI import/export
-- MuseData import
-- MIDI input for note entry
-- Integrated sequencer and software synthesizer to play the score
-- Print or create PDF files
+## Product direction
 
-## More info
+Song is being designed as a human + AI music workspace:
 
-- [MuseScore Studio Homepage](https://musescore.org)
-- [MuseScore Studio Git workflow instructions](https://musescore.org/en/developers-handbook/git-workflow)
-- [How to compile MuseScore Studio?](https://github.com/musescore/MuseScore/wiki/Set-up-developer-environment)
+- start from notation, MIDI, audio, lyrics, chords, or a written idea;
+- understand the current score and musical selection;
+- preview explainable AI suggestions before applying them;
+- keep every AI edit structured, editable, and undoable;
+- move from composition to parts, tabs, audio preview, PDF, MusicXML, and publishing;
+- collaborate around measures, notes, lyrics, arrangements, and versions.
 
-## License
+The notation engine is a foundation, not a rewrite target. New intelligence belongs above the score model and must use the existing command, undo, rendering, playback, and import/export pathways.
 
-MuseScore Studio is licensed under GPL version 3.0. See [license file](https://github.com/musescore/MuseScore/blob/master/LICENSE.txt) in the same directory.
+## Current phase
 
-## Packages
+The project is in its architecture and brand-foundation phase. The first design documents are in [`docs/architecture`](docs/architecture):
 
-See [Code Structure on Wiki](https://github.com/musescore/MuseScore/wiki/CodeStructure)
+- current MuseScore architecture audit;
+- Finalverse Song product vision;
+- provider-neutral AI integration plan;
+- incremental refactoring and delivery roadmap.
+
+Visual identity source files and usage guidance live in [`branding`](branding).
+
+## Compatibility
+
+Song intends to remain compatible with:
+
+- `.mscz`, `.mscx`, and existing MuseScore Studio projects;
+- MusicXML and compressed MusicXML;
+- MIDI and karaoke MIDI;
+- Guitar Pro, MEI, MNX, Capella, and other formats supported by the inherited import/export modules;
+- the existing MuseScore plugin API while a future Song Plugin SDK is designed.
+
+Internal `MuseScore.*` QML names, `musescore://` routes, native format identifiers, and historical product references remain in the code where changing them would harm compatibility or attribution.
 
 ## Building
 
-**Read the [Compilation section](https://github.com/musescore/MuseScore/wiki/Set-up-developer-environment) of the [MuseScore Wiki](https://github.com/musescore/MuseScore/wiki) for a complete build walkthrough and a list of dependencies.**
+The desktop application uses C++20, Qt 6, QML, CMake, and Ninja on macOS.
 
-### Getting sources
+Initialize the pinned framework dependencies:
 
-If using git to download repo of entire code history, type:
+```bash
+git submodule update --init --recursive
+```
 
-    git clone  --recurse-submodules https://github.com/musescore/MuseScore.git
-    cd MuseScore
+Make Qt available, then configure and build:
 
-(The `--recurse-submodules` ensures that the [`muse_framework`](https://github.com/musescore/muse_framework) git submodule is checked out into the `muse/` subdirectory.)
+```bash
+export PATH="/opt/homebrew/opt/qt/bin:$PATH"
+cmake -P build.cmake configure -DCMAKE_BUILD_TYPE=Debug -G Ninja
+cmake -P build.cmake build -DCMAKE_BUILD_TYPE=Debug -G Ninja
+```
 
-Otherwise, you can just download the latest source release tarball from the [Releases page](https://github.com/musescore/MuseScore/releases), and then from your download directory type:
+For release, testing, platform dependencies, and unit-test workflows, see the inherited build scripts and the upstream [MuseScore Studio developer documentation](https://github.com/musescore/MuseScore/wiki/Set-up-developer-environment).
 
-    tar xzf MuseScore-x.x.x.tar.gz
-    cd MuseScore-x.x.x
+## Project links
 
-### Release Build
+- Product: [song.finalverse.com](https://song.finalverse.com/)
+- Company route: [finalverse.com/song](https://finalverse.com/song)
+- Repository: [github.com/finalverse/song](https://github.com/finalverse/song)
 
-To compile MuseScore Studio for release, type:
+## Contributing
 
-    cmake -P build.cmake -DCMAKE_BUILD_TYPE=Release
+Keep changes small, documented, testable, and compatible with the notation engine. New AI features must be modular, provider-neutral, privacy-aware, cancellable, previewable, and reversible.
 
-On MacOS, append `-G Ninja` in order to use the `ninja` build tool (which you may need to install), since this
-is required to compile Swift components.
+Do not commit provider credentials, access tokens, private endpoints, or user music. Never embed credentials in Git remote URLs or diagnostic output.
 
-If something goes wrong, append the word "clean" to the above command to delete the build subdirectory:
+## License and upstream attribution
 
-    cmake -P build.cmake -DCMAKE_BUILD_TYPE=Release clean
+Finalverse Song Studio is based on MuseScore Studio and is licensed under the GNU General Public License version 3. See [`LICENSE.txt`](LICENSE.txt).
 
-Then try running the first command again.
-
-### Running
-
-To start MuseScore Studio, type:
-
-    cmake -P build.cmake -DCMAKE_BUILD_TYPE=Release run
-
-Or run the compiled executable directly.
-
-### Debug Build
-
-A debug version can be built and run by replacing `-DCMAKE_BUILD_TYPE=Release`
-with `-DCMAKE_BUILD_TYPE=Debug` in the above commands.
-
-If you omit the `-DCMAKE_BUILD_TYPE` option entirely then `RelWithDebInfo` is
-used by default, as it provides a useful compromise between Release and Debug.
-
-### Testing
-
-See the [Unit tests section](https://github.com/musescore/MuseScore/wiki/Unit-tests) of the [MuseScore Studio Wiki](https://github.com/musescore/MuseScore/wiki) for instructions on how to run the test suite.
-
-### Code Formatting
-
-Run `./hooks/install.sh` to install a pre-commit hook that will format your staged files. Requires that you install `uncrustify`.
-
-If you have problems, please report them. To uninstall, run `./hooks/uninstall.sh`.
+Copyright for inherited MuseScore Studio code remains with MuseScore Limited and its contributors. New Finalverse contributions are copyright Finalverse Inc. and contributors unless otherwise stated. Existing source headers and third-party notices must be preserved.

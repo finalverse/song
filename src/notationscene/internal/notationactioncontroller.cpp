@@ -2774,7 +2774,7 @@ void NotationActionController::loadStyle()
         if (!notationStyle()->loadStyle(path.toQString(), false)) {
             auto promise = interactive()->warning(
                 muse::trc("notation",
-                          "Since this style file is from a different version of MuseScore Studio, your score is not guaranteed to display correctly."),
+                          "Since this style file is from a different application version, your score is not guaranteed to display correctly."),
                 muse::trc("notation", "Click OK to load anyway."), { IInteractive::Button::Ok, IInteractive::Button::Cancel },
                 IInteractive::Button::Ok);
 
@@ -3225,7 +3225,7 @@ void NotationActionController::checkForScoreCorruptions()
     } else {
         std::string title = muse::mtrc("project", "File “%1” is corrupted").arg(fileName).toStdString();
         IInteractive::Text text;
-        text.text = muse::trc("project", "This file contains errors that could cause MuseScore Studio to malfunction. "
+        text.text = muse::trc("project", "This file contains errors that could cause Finalverse Song Studio to malfunction. "
                                          "Please fix those at the earliest, to prevent crashes and further corruptions.");
         text.detailedText = ret.text();
 

@@ -31,8 +31,8 @@ import MuseScore.Preferences
 Page {
     id: root
 
-    title: qsTrc("appshell/gettingstarted", "Welcome to MuseScore Studio")
-    explanation: qsTrc("appshell/gettingstarted", "Let’s get started by choosing a theme.")
+    title: qsTrc("appshell/gettingstarted", "Welcome to Finalverse Song Studio")
+    explanation: qsTrc("appshell/gettingstarted", "Let’s shape your music workspace, starting with a theme.")
 
     titleContentSpacing: model.isFollowSystemThemeAvailable ? 24 : 28
 
