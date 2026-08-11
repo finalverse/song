@@ -1,5 +1,9 @@
 # AI integration plan
 
+## Implementation status
+
+Milestone 2.1 is implemented in `src/ai/`: the module is optional at compile time, exposes provider-neutral request/service/router contracts, enforces explicit context budgets and local-only routing, supports cancellation and streaming result handles, includes a deterministic offline provider, defines a platform secret-store boundary without an insecure fallback, and redacts common credential shapes from diagnostics. It contains no provider SDK, cloud endpoint, or score mutation path.
+
 ## Architectural goal
 
 Add music intelligence without coupling the score engine to a model vendor or allowing model output to mutate engraving objects directly.
