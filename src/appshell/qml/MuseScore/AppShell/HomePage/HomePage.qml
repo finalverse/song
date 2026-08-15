@@ -28,8 +28,6 @@ import Muse.Ui
 import Muse.UiComponents
 import Muse.Dock
 
-import Muse.Cloud
-import Muse.Learn
 import MuseScore.Project
 import MuseScore.MuseSounds
 
@@ -59,19 +57,25 @@ DockPage {
     }
 
     function setCurrentCentral(name) {
-        if (section === name || !Boolean(name)) {
+        if (!Boolean(name)) {
             return
         }
 
-        section = name
+        let targetName = name
 
         switch (name) {
         case "scores": root.central = scoresComp; break
         case "plugins": root.central = extensionsComp; break // backward compatibility
         case "extensions": root.central = extensionsComp; break
         case "musesounds": root.central = museSoundsComp; break
-        case "learn": root.central = learnComp; break
-        case "account": root.central = accountComp; break
+        default:
+            targetName = "scores"
+            root.central = scoresComp
+            break
+        }
+
+        if (root.section !== targetName) {
+            root.section = targetName
         }
     }
 
@@ -109,12 +113,6 @@ DockPage {
     central: scoresComp
 
     Component {
-        id: accountComp
-
-        AccountPage {}
-    }
-
-    Component {
         id: scoresComp
 
         ScoresPage {}
@@ -132,11 +130,4 @@ DockPage {
         MuseSoundsPage {}
     }
 
-    Component {
-        id: learnComp
-
-        LearnPage {
-            section: root.subSection
-        }
-    }
 }

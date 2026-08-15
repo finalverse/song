@@ -57,24 +57,5 @@ PreferencesPage {
             }
         }
 
-        SeparatorLine { }
-
-        SaveToCloudSection {
-            navigation.section: root.navigationSection
-            navigation.order: root.navigationOrderStart + 2
-        }
-
-        SeparatorLine { }
-
-        PublishMuseScoreComSection {
-            alsoShareAudioCom: preferencesModel.alsoShareAudioCom
-
-            navigation.section: root.navigationSection
-            navigation.order: root.navigationOrderStart + 3
-
-            onAlsoShareAudioComChangeRequested: function(share) {
-                preferencesModel.alsoShareAudioCom = share;
-            }
-        }
     }
 }

@@ -22,6 +22,7 @@
 #include "notationscenemodule.h"
 
 #include "modularity/ioc.h"
+#include "interactive/iinteractive.h"
 #include "interactive/iinteractiveuriregister.h"
 #include "ui/iuiactionsregister.h"
 #include "rcommand/icommandsregister.h"
@@ -124,7 +125,8 @@ void NotationSceneContext::resolveImports()
     }
 
     auto cs = ioc()->resolve<muse::rcommand::ICommandsState>(mname);
-    if (cs) {
+    auto interactive = ioc()->resolve<muse::IInteractive>(mname);
+    if (cs && interactive) {
         cs->reg(std::make_shared<NotationCommandsState>(iocContext()));
     }
 }

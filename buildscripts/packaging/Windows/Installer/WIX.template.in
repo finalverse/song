@@ -153,7 +153,7 @@
             <!-- Instead of using WiX's/MSI's ProgId functionality, we use the registry directly for more control -->
             <!-- MSCZ -->
             <RegistryKey Root="$(var.RegistryRoot)" Key="SOFTWARE\Classes\MuseScore.mscz.$(var.ProgIdSuffix)">
-                <RegistryValue Value="MuseScore File" Type="string" />
+                <RegistryValue Value="Song Score (MuseScore compatible)" Type="string" />
                 <RegistryValue Key="DefaultIcon" Value="[INSTALL_ROOT]bin\$(var.ExeName),1" Type="string" />
                 <RegistryValue Key="shell\open\command" Value="&quot;[INSTALL_ROOT]bin\$(var.ExeName)&quot; &quot;%1&quot;" Type="string" />
             </RegistryKey>
@@ -170,7 +170,7 @@
 
             <!-- MSCX -->
             <RegistryKey Root="$(var.RegistryRoot)" Key="SOFTWARE\Classes\MuseScore.mscx.$(var.ProgIdSuffix)">
-                <RegistryValue Value="MuseScore Uncompressed File" Type="string" />
+                <RegistryValue Value="Song Uncompressed Score (MuseScore compatible)" Type="string" />
                 <RegistryValue Key="DefaultIcon" Value="[INSTALL_ROOT]bin\$(var.ExeName),2" Type="string" />
                 <RegistryValue Key="shell\open\command" Value="&quot;[INSTALL_ROOT]bin\$(var.ExeName)&quot; &quot;%1&quot;" Type="string" />
             </RegistryKey>
@@ -187,7 +187,7 @@
 
             <!-- MSCS -->
             <RegistryKey Root="$(var.RegistryRoot)" Key="SOFTWARE\Classes\MuseScore.mscs.$(var.ProgIdSuffix)">
-                <RegistryValue Value="MuseScore Uncompressed File" Type="string" />
+                <RegistryValue Value="Song Developer Score (MuseScore compatible)" Type="string" />
                 <RegistryValue Key="DefaultIcon" Value="[INSTALL_ROOT]bin\$(var.ExeName),1" Type="string" />
                 <RegistryValue Key="shell\open\command" Value="&quot;[INSTALL_ROOT]bin\$(var.ExeName)&quot; &quot;%1&quot;" Type="string" />
             </RegistryKey>
@@ -204,7 +204,7 @@
 
             <!-- MSCZ~ -->
             <RegistryKey Root="$(var.RegistryRoot)" Key="SOFTWARE\Classes\MuseScore.mscz~.$(var.ProgIdSuffix)">
-                <RegistryValue Value="MuseScore Backup File" Type="string" />
+                <RegistryValue Value="Song Score Backup (MuseScore compatible)" Type="string" />
                 <RegistryValue Key="DefaultIcon" Value="[INSTALL_ROOT]bin\$(var.ExeName),1" Type="string" />
                 <RegistryValue Key="shell\open\command" Value="&quot;[INSTALL_ROOT]bin\$(var.ExeName)&quot; &quot;%1&quot;" Type="string" />
             </RegistryKey>
@@ -221,7 +221,7 @@
 
             <!-- musescore URL scheme -->
             <RegistryKey Root="$(var.RegistryRoot)" Key="SOFTWARE\Classes\MuseScore.Url.musescore.$(var.ProgIdSuffix)">
-                <RegistryValue Value="MuseScore URL" Type="string" />
+                <RegistryValue Value="Song URL" Type="string" />
                 <RegistryValue Key="DefaultIcon" Value="[INSTALL_ROOT]bin\$(var.ExeName),1" Type="string" />
                 <RegistryValue Key="shell\open\command" Value="&quot;[INSTALL_ROOT]bin\$(var.ExeName)&quot; &quot;%1&quot;" Type="string" />
             </RegistryKey>
@@ -231,7 +231,7 @@
 
             <RegistryKey Root="$(var.RegistryRoot)" Key="SOFTWARE\Classes\musescore">
                 <RegistryValue Name="URL Protocol" Value="" Type="string" />
-                <RegistryValue Value="URL:MuseScore URL" Type="string" />
+                <RegistryValue Value="URL:Song URL" Type="string" />
             </RegistryKey>
         </Component>
 

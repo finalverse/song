@@ -38,7 +38,6 @@ class SaveAndPublishPreferencesModel : public QObject, public muse::Contextable,
 
     Q_PROPERTY(bool isAutoSaveEnabled READ isAutoSaveEnabled WRITE setAutoSaveEnabled NOTIFY autoSaveEnabledChanged)
     Q_PROPERTY(int autoSaveInterval READ autoSaveInterval WRITE setAutoSaveInterval NOTIFY autoSaveIntervalChanged)
-    Q_PROPERTY(int alsoShareAudioCom READ alsoShareAudioCom WRITE setAlsoShareAudioCom NOTIFY alsoShareAudioComChanged)
 
     muse::GlobalInject<project::IProjectConfiguration> projectConfiguration;
 
@@ -49,16 +48,13 @@ public:
 
     bool isAutoSaveEnabled() const;
     int autoSaveInterval() const;
-    bool alsoShareAudioCom() const;
 
 public slots:
     void setAutoSaveEnabled(bool enabled);
     void setAutoSaveInterval(int minutes);
-    void setAlsoShareAudioCom(bool share);
 
 signals:
     void autoSaveEnabledChanged(bool enabled);
     void autoSaveIntervalChanged(int minutes);
-    void alsoShareAudioComChanged(int prompt);
 };
 }

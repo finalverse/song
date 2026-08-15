@@ -54,7 +54,9 @@ static QString osCode()
 
 void MuseSoundsConfiguration::init()
 {
-    settings()->setDefaultValue(CHECK_FOR_MUSESOUNDS_UPDATE_KEY, Val(true));
+    // Song keeps local MuseSounds compatibility but does not use MuseScore's
+    // promotional update feed. Finalverse can provide its own feed later.
+    settings()->setDefaultValue(CHECK_FOR_MUSESOUNDS_UPDATE_KEY, Val(false));
     settings()->setCanBeManuallyEdited(CHECK_FOR_MUSESOUNDS_UPDATE_KEY, true);
     settings()->setDescription(CHECK_FOR_MUSESOUNDS_UPDATE_KEY, muse::trc("musesounds", "Show occasional MuseHub promotions"));
     settings()->setDefaultValue(GET_SOUNDS_TEST_MODE_KEY, Val(false));
@@ -63,7 +65,7 @@ void MuseSoundsConfiguration::init()
 
 bool MuseSoundsConfiguration::needCheckForMuseSoundsUpdate() const
 {
-    return settings()->value(CHECK_FOR_MUSESOUNDS_UPDATE_KEY).toBool();
+    return false;
 }
 
 RequestHeaders MuseSoundsConfiguration::headers() const

@@ -86,13 +86,6 @@ static const std::vector<CommandInfo> s_commandInfos = {
         Decoration()
     },
     CommandInfo{
-        PROJECT_SAVE_TO_CLOUD_COMMAND,
-        TranslatableString("project", "Save to clo&ud…"),
-        TranslatableString("project", "Save the project to cloud"),
-        InputSchema(),
-        Decoration(IconCode::Code::CLOUD_FILE)
-    },
-    CommandInfo{
         PROJECT_SAVE_AT_COMMAND,
         TranslatableString("project", "Save at…"),
         TranslatableString("project", "Save the project at"),
@@ -100,21 +93,6 @@ static const std::vector<CommandInfo> s_commandInfos = {
             { "path", Arg(DataType::String, u"Path of the project to save") }
         }),
         Decoration()
-    },
-
-    CommandInfo{
-        PROJECT_PUBLISH_COMMAND,
-        TranslatableString("project", "Publish to &MuseScore.com…"),
-        TranslatableString("project", "Publish the project to MuseScore.com"),
-        InputSchema(),
-        Decoration(IconCode::Code::CLOUD_FILE)
-    },
-    CommandInfo{
-        PROJECT_SHARED_AUDIO_COMMAND,
-        TranslatableString("project", "Share on &Audio.com…"),
-        TranslatableString("project", "Share the project on Audio.com"),
-        InputSchema(),
-        Decoration(IconCode::Code::SHARE_AUDIO)
     },
 
     CommandInfo{

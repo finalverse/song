@@ -1,0 +1,32 @@
+<svg width="986" height="624" viewBox="0 0 986 624" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="songGradient" x1="73" y1="84" x2="258" y2="294" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="0.52" stop-color="#FF5C8A"/>
+      <stop offset="1" stop-color="#2DE2C5"/>
+    </linearGradient>
+    <linearGradient id="panelGlow" x1="0" y1="0" x2="342" y2="624" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17122B"/>
+      <stop offset="1" stop-color="#090B14"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="986" height="624" fill="#F7F7F2"/>
+  <rect width="342" height="624" fill="url(#panelGlow)"/>
+  <circle cx="330" cy="94" r="180" fill="#7C5CFF" opacity="0.10"/>
+  <circle cx="38" cy="566" r="170" fill="#2DE2C5" opacity="0.07"/>
+
+  <g transform="translate(35 45) scale(0.28)">
+    <path d="M731 291C667 224 563 196 460 214C345 234 272 298 272 377C272 458 348 493 482 515C622 538 749 566 749 664C749 755 655 817 530 826C416 835 316 794 263 725"
+          stroke="url(#songGradient)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="731" cy="291" r="37" fill="#7C5CFF"/>
+    <circle cx="263" cy="725" r="37" fill="#2DE2C5"/>
+  </g>
+
+  <text x="48" y="337" fill="#F7F7F2" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="7">SONG</text>
+  <text x="51" y="375" fill="#C8C4D8" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="4">BY FINALVERSE</text>
+  <text x="49" y="455" fill="#F7F7F2" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">From an idea to</text>
+  <text x="49" y="486" fill="#F7F7F2" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">a living score.</text>
+  <text x="49" y="557" fill="#8E89A3" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="1.5">AI-NATIVE MUSIC CREATION</text>
+  <rect x="342" y="0" width="5" height="624" fill="url(#songGradient)"/>
+</svg>

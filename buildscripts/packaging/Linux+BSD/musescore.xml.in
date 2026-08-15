@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>@Variables_substituted_by_CMAKE_on_installation@
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
 
-    <!-- MuseScore documents -->
+    <!-- Song documents (MuseScore-compatible formats) -->
 
     <mime-type type="application/x-musescore">
-        <comment>MuseScore File</comment>
+        <comment>Song Score (MuseScore compatible)</comment>
         <glob pattern="*.mscz"/>
         <sub-class-of type="application/zip"/>
         <icon name="application-x-musescore@MUSE_APP_INSTALL_SUFFIX@"/>
     </mime-type>
 
     <mime-type type="application/x-musescore+xml">
-        <comment>MuseScore Uncompressed File</comment>
+        <comment>Song Uncompressed Score (MuseScore compatible)</comment>
         <glob pattern="*.mscx"/>
         <sub-class-of type="application/xml"/>
         <root-XML namespaceURI="" localName="museScore"/>
@@ -26,7 +26,7 @@
     </mime-type>
 
     <mime-type type="application/x-musescore+xml">
-        <comment>MuseScore Uncompressed File</comment>
+        <comment>Song Developer Score (MuseScore compatible)</comment>
         <glob pattern="*.mscsx"/>
         <sub-class-of type="application/xml"/>
         <root-XML namespaceURI="" localName="museScore"/>
@@ -41,22 +41,22 @@
     </mime-type>
 
     <mime-type type="application/x-musescore">
-        <comment>MuseScore compressed backup score</comment>
+        <comment>Song Score Backup (MuseScore compatible)</comment>
         <glob pattern="*.mscz~"/>
         <sub-class-of type="application/zip"/>
         <icon name="application-x-musescore@MUSE_APP_INSTALL_SUFFIX@"/>
     </mime-type>
 
-    <!-- MuseScore URL Protocol -->
+    <!-- MuseScore-compatible URL protocol -->
 
     <mime-type type="x-scheme-handler/musescore">
-        <comment>MuseScore URL Protocol</comment>
+        <comment>Song URL Protocol</comment>
     </mime-type>
 
-    <!-- MuseScore internal formats -->
+    <!-- Song internal formats (MuseScore compatible) -->
 
     <mime-type type="application/x-musescore.drumset+xml">
-        <comment>MuseScore drumset</comment>
+        <comment>Song Drumset</comment>
         <glob pattern="*.drm"/>
         <sub-class-of type="application/xml"/>
         <root-XML namespaceURI="" localName="museScore"/>
@@ -70,13 +70,13 @@
     </mime-type>
 
     <mime-type type="application/x-musescore.palette">
-        <comment>MuseScore palette</comment>
+        <comment>Song Palette</comment>
         <glob pattern="*.mpal"/>
         <sub-class-of type="application/zip"/>
     </mime-type>
 
     <mime-type type="application/x-musescore.style+xml">
-        <comment>MuseScore style</comment>
+        <comment>Song Style</comment>
         <glob pattern="*.mss"/>
         <sub-class-of type="application/xml"/>
         <root-XML namespaceURI="" localName="museScore"/>

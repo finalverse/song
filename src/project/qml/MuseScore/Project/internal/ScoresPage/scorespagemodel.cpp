@@ -49,26 +49,6 @@ void ScoresPageModel::openScore(const QString& scorePath, const QString& display
     dispatcher()->dispatch("file-open", ActionData::make_arg2<QUrl, QString>(QUrl::fromLocalFile(scorePath), displayNameOverride));
 }
 
-void ScoresPageModel::openScoreManager()
-{
-    platformInteractive()->openUrl(museScoreComService()->scoreManagerUrl());
-}
-
-int ScoresPageModel::tabIndex() const
-{
-    return configuration()->homeScoresPageTabIndex();
-}
-
-void ScoresPageModel::setTabIndex(int index)
-{
-    if (index == tabIndex()) {
-        return;
-    }
-
-    configuration()->setHomeScoresPageTabIndex(index);
-    emit tabIndexChanged();
-}
-
 ScoresPageModel::ViewType ScoresPageModel::viewType() const
 {
     return static_cast<ViewType>(configuration()->homeScoresPageViewType());

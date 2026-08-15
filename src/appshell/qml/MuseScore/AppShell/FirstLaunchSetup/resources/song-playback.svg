@@ -1,0 +1,54 @@
+<svg width="1040" height="580" viewBox="0 0 1040 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="songGradient" x1="144" y1="104" x2="844" y2="504" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="0.52" stop-color="#FF5C8A"/>
+      <stop offset="1" stop-color="#2DE2C5"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1040" y2="580" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17122B"/>
+      <stop offset="1" stop-color="#090B14"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1040" height="580" rx="18" fill="url(#glow)"/>
+  <circle cx="876" cy="102" r="228" fill="#7C5CFF" opacity="0.13"/>
+  <circle cx="141" cy="558" r="206" fill="#2DE2C5" opacity="0.08"/>
+
+  <g opacity="0.24" stroke="#C8C4D8" stroke-width="4">
+    <path d="M76 189C214 143 326 146 458 191C590 236 714 245 964 175"/>
+    <path d="M76 250C214 204 326 207 458 252C590 297 714 306 964 236"/>
+    <path d="M76 311C214 265 326 268 458 313C590 358 714 367 964 297"/>
+    <path d="M76 372C214 326 326 329 458 374C590 419 714 428 964 358"/>
+  </g>
+
+  <g transform="translate(90 47) scale(0.18)">
+    <path d="M731 291C667 224 563 196 460 214C345 234 272 298 272 377C272 458 348 493 482 515C622 538 749 566 749 664C749 755 655 817 530 826C416 835 316 794 263 725"
+          stroke="url(#songGradient)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="731" cy="291" r="37" fill="#7C5CFF"/>
+    <circle cx="263" cy="725" r="37" fill="#2DE2C5"/>
+  </g>
+
+  <text x="245" y="130" fill="#F7F7F2" font-family="Avenir Next, Segoe UI, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="5">PLAYBACK</text>
+  <text x="249" y="169" fill="#C8C4D8" font-family="Avenir Next, Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="4">HEAR THE LIVING SCORE</text>
+
+  <g transform="translate(440 225)">
+    <circle cx="80" cy="80" r="78" fill="#F7F7F2" opacity="0.96"/>
+    <path d="M62 42L121 80L62 118V42Z" fill="url(#songGradient)"/>
+  </g>
+
+  <g fill="url(#songGradient)">
+    <rect x="208" y="432" width="18" height="46" rx="9" opacity="0.55"/>
+    <rect x="240" y="414" width="18" height="82" rx="9" opacity="0.65"/>
+    <rect x="272" y="393" width="18" height="124" rx="9" opacity="0.75"/>
+    <rect x="304" y="423" width="18" height="64" rx="9" opacity="0.65"/>
+    <rect x="336" y="405" width="18" height="100" rx="9" opacity="0.75"/>
+    <rect x="686" y="405" width="18" height="100" rx="9" opacity="0.75"/>
+    <rect x="718" y="423" width="18" height="64" rx="9" opacity="0.65"/>
+    <rect x="750" y="393" width="18" height="124" rx="9" opacity="0.75"/>
+    <rect x="782" y="414" width="18" height="82" rx="9" opacity="0.65"/>
+    <rect x="814" y="432" width="18" height="46" rx="9" opacity="0.55"/>
+  </g>
+
+  <text x="520" y="548" fill="#8E89A3" font-family="Avenir Next, Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="3" text-anchor="middle">FINALVERSE SONG STUDIO</text>
+</svg>

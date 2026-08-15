@@ -107,8 +107,8 @@ RetVal<muse::io::path_t> OpenSaveProjectScenario::askLocalPath(INotationProjectP
     muse::io::path_t defaultPath = configuration()->defaultSavingFilePath(project, filenameAddition);
 
     std::vector<std::string> filter {
-        muse::trc("project", "MuseScore file") + " (*.mscz)",
-        muse::trc("project", "Uncompressed MuseScore folder (experimental)")
+        muse::trc("project", "Song score (MuseScore compatible)") + " (*.mscz)",
+        muse::trc("project", "Uncompressed Song score folder (experimental)")
 #ifdef Q_OS_MAC
         + " (*)"
 #else

@@ -42,6 +42,7 @@ private:
     std::shared_ptr<muse::CmdOptions> makeContextOptions(const muse::StringList& args) const override;
     void showContextSplash(const muse::modularity::ContextPtr& ctxId) override;
     QString mainWindowQmlPath(const QString& platform) const override;
+    bool loadMainWindow(const muse::modularity::ContextPtr& ctxId) override;
     void doStartupScenario(const muse::modularity::ContextPtr& ctxId) override;
 
     appshell::SplashScreen* m_splashScreen = nullptr;

@@ -1,5 +1,7 @@
 #include "guiapp.h"
 
+#include <QCoreApplication>
+
 #include "modularity/ioc.h"
 #include "appshell/internal/istartupscenario.h"
 
@@ -98,6 +100,26 @@ std::shared_ptr<muse::CmdOptions> MuseScoreGuiApp::makeContextOptions(const muse
 QString MuseScoreGuiApp::mainWindowQmlPath(const QString& platform) const
 {
     return QString(":/qt/qml/MuseScore/AppShell/platform/%1/Main.qml").arg(platform);
+}
+
+bool MuseScoreGuiApp::loadMainWindow(const muse::modularity::ContextPtr& ctxId)
+{
+    if (muse::ui::GuiApplication::loadMainWindow(ctxId)) {
+        LOGI() << "Song main window loaded successfully";
+        return true;
+    }
+
+#ifdef MUE_ENABLE_SPLASHSCREEN
+    if (m_splashScreen) {
+        m_splashScreen->close();
+        delete m_splashScreen;
+        m_splashScreen = nullptr;
+    }
+#endif
+
+    LOGE() << "Song main window failed to load; terminating startup";
+    QCoreApplication::exit(1);
+    return false;
 }
 
 void MuseScoreGuiApp::doStartupScenario(const muse::modularity::ContextPtr& ctxId)
