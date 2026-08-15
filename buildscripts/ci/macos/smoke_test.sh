@@ -6,6 +6,7 @@ set -euo pipefail
 APP_PATH="${1:-applebuild/mscore.app}"
 APP_BINARY="${APP_PATH}/Contents/MacOS/mscore"
 EXPORT_INPUT="${2:-src/converter/tests/data/score_elements.mscx}"
+EXPORT_INPUT_NAME="$(basename "${EXPORT_INPUT}")"
 LOG_ROOT="${HOME}/Library/Application Support/Finalverse Inc."
 RUN_LOG="$(mktemp -t song-launch-smoke)"
 START_MARKER="$(mktemp -t song-launch-start)"
@@ -54,8 +55,8 @@ if [[ ! -s "${EXPORT_OUTPUT}" ]] || [[ "$(head -c 4 "${EXPORT_OUTPUT}")" != "%PD
     exit 1
 fi
 
-echo "Launching packaged Finalverse Song Studio"
-"${APP_BINARY}" --factory-settings >"${RUN_LOG}" 2>&1 &
+echo "Launching packaged Finalverse Song Studio with a score"
+"${APP_BINARY}" --factory-settings "${EXPORT_INPUT}" >"${RUN_LOG}" 2>&1 &
 PROCESS_ID=$!
 
 for _ in $(seq 1 45); do
@@ -66,8 +67,12 @@ for _ in $(seq 1 45); do
         exit 1
     fi
 
+    # Production-style builds omit the DEBUG-level NotationProject and UI
+    # context markers. The preceding export proves the score is loadable; the
+    # INFO-level controller marker proves the GUI received that same score.
     if find "${LOG_ROOT}" -type f -path '*/logs/*.log' -newer "${START_MARKER}" \
         -exec grep -q "Song main window loaded successfully" {} \; \
+        -exec grep -q "ProjectActionsController::openProject.*Try open project:.*${EXPORT_INPUT_NAME}" {} \; \
         -print -quit 2>/dev/null | grep -q .; then
         sleep 3
         if ! kill -0 "${PROCESS_ID}" 2>/dev/null; then
@@ -77,7 +82,7 @@ for _ in $(seq 1 45); do
             exit 1
         fi
 
-        echo "Packaged Song main window loaded successfully"
+        echo "Packaged Song opened a score in its main window successfully"
         exit 0
     fi
 

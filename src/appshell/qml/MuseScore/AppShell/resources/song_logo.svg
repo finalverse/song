@@ -4,15 +4,18 @@
       <stop stop-color="#17122B"/>
       <stop offset="1" stop-color="#090B14"/>
     </linearGradient>
-    <linearGradient id="aboutMark" x1="94" y1="79" x2="300" y2="326" gradientUnits="userSpaceOnUse">
+    <linearGradient id="aboutMark" x1="735" y1="235" x2="250" y2="835" gradientUnits="userSpaceOnUse">
       <stop stop-color="#7C5CFF"/>
       <stop offset="0.52" stop-color="#FF5C8A"/>
       <stop offset="1" stop-color="#2DE2C5"/>
     </linearGradient>
   </defs>
   <rect width="392" height="392" rx="86" fill="url(#aboutBackground)"/>
-  <path d="M280 112C255 86 215 75 175 82C131 90 103 114 103 144C103 175 132 188 184 197C238 206 287 216 287 254C287 289 251 312 203 316C159 319 120 304 100 277"
-        stroke="url(#aboutMark)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="280" cy="112" r="14" fill="#7C5CFF"/>
-  <circle cx="100" cy="277" r="14" fill="#2DE2C5"/>
+  <g transform="translate(12 12) scale(0.36)">
+    <ellipse cx="306" cy="752" rx="132" ry="91" transform="rotate(-16 306 752)" fill="url(#aboutMark)"/>
+    <path d="M390 716C510 676 540 600 492 528C447 461 414 405 450 340C498 253 620 226 736 282"
+          stroke="url(#aboutMark)" stroke-width="86" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M710 237C810 258 864 337 841 443C795 389 738 362 666 371C691 331 705 285 710 237Z"
+          fill="url(#aboutMark)"/>
+  </g>
 </svg>

@@ -8,8 +8,8 @@ jobs:
   check_muse_framework:
     runs-on: ubuntu-slim
     env:
-      EXPECTED_URL: https://github.com/musescore/muse_framework.git
-      EXPECTED_BRANCH: main
+      EXPECTED_URL: https://github.com/finalverse/muse_framework.git
+      EXPECTED_BRANCH: song/5.x-stability
     steps:
     - name: Clone repository
       uses: actions/checkout@v7
@@ -20,11 +20,11 @@ jobs:
         echo "Expected: ${EXPECTED_URL}"
         echo "Actual:   ${ACTUAL_URL}"
         if [ "${ACTUAL_URL}" != "${EXPECTED_URL}" ]; then
-          echo "::error file=.gitmodules::muse_framework submodule URL must be ${EXPECTED_URL}, found ${ACTUAL_URL}. Did you accidentally leave it pointing at a fork?"
+          echo "::error file=.gitmodules::muse_framework submodule URL must be ${EXPECTED_URL}, found ${ACTUAL_URL}."
           exit 1
         fi
 
-    - name: Verify muse_framework commit is in upstream
+    - name: Verify muse_framework commit is published by Finalverse
       run: |
         SHA=$(git ls-tree HEAD muse | awk '{print $3}')
         if [ -z "${SHA}" ]; then

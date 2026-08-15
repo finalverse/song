@@ -82,7 +82,7 @@
 		</dict>
 		<dict>
 			<key>UTTypeIdentifier</key>
-			<string>org.musescore.mscz,</string>
+			<string>com.finalverse.song.mscz-backup</string>
 			<key>UTTypeDescription</key>
 			<string>Song Score Backup (MuseScore compatible)</string>
 			<key>UTTypeIconFile</key>
@@ -172,11 +172,11 @@
 			<string>MsczIcon.icns</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.musescore.mscz,</string>
+				<string>com.finalverse.song.mscz-backup</string>
 			</array>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>mscz,</string>
+				<string>mscz~</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -192,11 +192,11 @@
 			<string>MscxIcon.icns</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.musescore.mscx,</string>
+				<string>com.finalverse.song.mscx-backup</string>
 			</array>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>mscx,</string>
+				<string>mscx~</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>

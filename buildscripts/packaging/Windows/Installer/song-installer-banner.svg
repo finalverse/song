@@ -10,10 +10,11 @@
   <rect width="986" height="116" fill="#F7F7F2"/>
   <rect y="111" width="986" height="5" fill="url(#songGradient)"/>
   <g transform="translate(7 -3) scale(0.12)">
-    <path d="M731 291C667 224 563 196 460 214C345 234 272 298 272 377C272 458 348 493 482 515C622 538 749 566 749 664C749 755 655 817 530 826C416 835 316 794 263 725"
-          stroke="url(#songGradient)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="731" cy="291" r="37" fill="#7C5CFF"/>
-    <circle cx="263" cy="725" r="37" fill="#2DE2C5"/>
+    <ellipse cx="306" cy="752" rx="132" ry="91" transform="rotate(-16 306 752)" fill="url(#songGradient)"/>
+    <path d="M390 716C510 676 540 600 492 528C447 461 414 405 450 340C498 253 620 226 736 282"
+          stroke="url(#songGradient)" stroke-width="86" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M710 237C810 258 864 337 841 443C795 389 738 362 666 371C691 331 705 285 710 237Z"
+          fill="url(#songGradient)"/>
   </g>
   <text x="112" y="58" fill="#171923" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" letter-spacing="4">SONG</text>
   <text x="114" y="84" fill="#646777" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="2.5">BY FINALVERSE</text>

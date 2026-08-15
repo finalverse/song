@@ -143,14 +143,19 @@ void StartupScenario::runAfterSplashScreen()
 {
     TRACEFUNC;
 
-    if (m_startupCompleted) {
+    if (m_startupStarted || m_startupCompleted) {
         return;
     }
 
-    m_startupCompleted = true;
+    m_startupStarted = true;
 
     StartupModeType modeType = StartupModeType::StartEmpty;
-    if (multiwindowsProvider()->isFirstWindow() && sessionsManager()->hasProjectsForRestore()) {
+    // An explicit file-open request must win over crash recovery. Otherwise,
+    // double-clicking a score after an unclean exit opens the recovery dialog
+    // and silently ignores the requested file.
+    if (m_startupScoreFile.isValid()) {
+        modeType = StartupModeType::StartWithScore;
+    } else if (multiwindowsProvider()->isFirstWindow() && sessionsManager()->hasProjectsForRestore()) {
         modeType = StartupModeType::Recovery;
     } else {
         modeType = resolveStartupModeType();
@@ -160,6 +165,9 @@ void StartupScenario::runAfterSplashScreen()
     auto promise = interactive()->open(startupUri);
     promise.onResolve(this, [this, modeType](const Val&) {
         onStartupPageOpened(modeType);
+    }).onReject(this, [this](int code, const std::string& error) {
+        m_startupStarted = false;
+        LOGE() << "failed to open the startup page, code: " << code << ", error: " << error;
     });
 }
 
@@ -184,6 +192,15 @@ StartupModeType StartupScenario::resolveStartupModeType() const
 void StartupScenario::onStartupPageOpened(StartupModeType modeType)
 {
     TRACEFUNC;
+
+    // A macOS QFileOpenEvent can arrive while the initial page is loading.
+    // Honor the queued score instead of losing it to the already-selected
+    // startup mode.
+    if (m_startupScoreFile.isValid()) {
+        modeType = StartupModeType::StartWithScore;
+    }
+
+    m_startupCompleted = true;
 
     switch (modeType) {
     case StartupModeType::StartEmpty:
@@ -233,6 +250,13 @@ void StartupScenario::showStartupDialogsIfNeed(StartupModeType modeType)
     TRACEFUNC;
 
     if (m_activeUpdateCheckCount != 0) {
+        return;
+    }
+
+    // Opening or recovering a score can present its own migration/recovery
+    // dialog. Do not stack first-launch, welcome, or app-update dialogs over
+    // that flow; show them on the next ordinary startup instead.
+    if (modeType == StartupModeType::StartWithScore || modeType == StartupModeType::Recovery) {
         return;
     }
 
