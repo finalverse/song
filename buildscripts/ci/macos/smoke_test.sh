@@ -67,10 +67,12 @@ for _ in $(seq 1 45); do
         exit 1
     fi
 
+    # Production-style builds omit the DEBUG-level NotationProject and UI
+    # context markers. The preceding export proves the score is loadable; the
+    # INFO-level controller marker proves the GUI received that same score.
     if find "${LOG_ROOT}" -type f -path '*/logs/*.log' -newer "${START_MARKER}" \
         -exec grep -q "Song main window loaded successfully" {} \; \
-        -exec grep -q "NotationProject::load.*try load: .*${EXPORT_INPUT_NAME}" {} \; \
-        -exec grep -q "UiCtxProjectFocused" {} \; \
+        -exec grep -q "ProjectActionsController::openProject.*Try open project:.*${EXPORT_INPUT_NAME}" {} \; \
         -print -quit 2>/dev/null | grep -q .; then
         sleep 3
         if ! kill -0 "${PROCESS_ID}" 2>/dev/null; then
