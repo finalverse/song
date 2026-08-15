@@ -26,6 +26,7 @@
 
 #include "rcommand/icommandsregister.h"
 #include "rcommand/icommandsstate.h"
+#include "interactive/iinteractive.h"
 #include "interactive/iinteractiveuriregister.h"
 #include "ui/iuiactionsregister.h"
 
@@ -98,7 +99,8 @@ void PlaybackContext::registerExports()
 void PlaybackContext::resolveImports()
 {
     auto cs = ioc()->resolve<muse::rcommand::ICommandsState>(mname);
-    if (cs) {
+    auto interactive = ioc()->resolve<muse::IInteractive>(mname);
+    if (cs && interactive) {
         cs->reg(std::make_shared<PlaybackCommandsState>(iocContext()));
     }
 

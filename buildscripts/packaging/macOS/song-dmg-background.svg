@@ -1,0 +1,38 @@
+<svg width="1178" height="794" viewBox="0 0 1178 794" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="songGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="0.52" stop-color="#FF5C8A"/>
+      <stop offset="1" stop-color="#2DE2C5"/>
+    </linearGradient>
+    <linearGradient id="arrowGradient" x1="497" y1="398" x2="681" y2="398" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#2DE2C5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#17122B" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1178" height="794" fill="#F7F7F2"/>
+  <path d="M0 0H1178V180C978 225 790 224 594 184C398 144 205 140 0 180V0Z" fill="#090B14"/>
+  <path d="M0 180C205 140 398 144 594 184C790 224 978 225 1178 180" stroke="url(#songGradient)" stroke-width="5" opacity="0.95"/>
+
+  <g transform="translate(48 23) scale(0.105)">
+    <path d="M731 291C667 224 563 196 460 214C345 234 272 298 272 377C272 458 348 493 482 515C622 538 749 566 749 664C749 755 655 817 530 826C416 835 316 794 263 725"
+          stroke="url(#songGradient)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="731" cy="291" r="37" fill="#7C5CFF"/>
+    <circle cx="263" cy="725" r="37" fill="#2DE2C5"/>
+  </g>
+  <text x="150" y="102" fill="#F7F7F2" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="68" font-weight="700" letter-spacing="7">SONG</text>
+  <text x="155" y="140" fill="#C8C4D8" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="20" font-weight="600" letter-spacing="5">BY FINALVERSE</text>
+  <text x="1128" y="102" fill="#F7F7F2" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="28" font-weight="600" text-anchor="end">Finalverse Song Studio</text>
+
+  <text x="589" y="273" fill="#171923" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="36" font-weight="600" text-anchor="middle">Drag Song Studio to Applications</text>
+
+  <g filter="url(#shadow)">
+    <path d="M497 380H623V340L681 398L623 456V416H497V380Z" fill="url(#arrowGradient)"/>
+  </g>
+
+  <text x="589" y="744" fill="#646777" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="24" font-weight="500" text-anchor="middle">song.finalverse.com</text>
+</svg>

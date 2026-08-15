@@ -111,7 +111,7 @@ QVariantList ImportPreferencesModel::shortestNotes() const
 
 QStringList ImportPreferencesModel::stylePathFilter() const
 {
-    return { muse::qtrc("preferences", "MuseScore style file") + " (*.mss)" };
+    return { muse::qtrc("preferences", "Song style file") + " (*.mss)" };
 }
 
 QString ImportPreferencesModel::styleChooseTitle() const

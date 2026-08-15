@@ -28,8 +28,6 @@
 #include "modularity/ioc.h"
 #include "iprojectconfiguration.h"
 #include "actions/iactionsdispatcher.h"
-#include "interactive/iplatforminteractive.h"
-#include "cloud/musescorecom/imusescorecomservice.h"
 
 class QString;
 
@@ -38,21 +36,15 @@ class ScoresPageModel : public QObject, public muse::Contextable
 {
     Q_OBJECT
 
-    Q_PROPERTY(int tabIndex READ tabIndex WRITE setTabIndex NOTIFY tabIndexChanged)
     Q_PROPERTY(ViewType viewType READ viewType WRITE setViewType NOTIFY viewTypeChanged)
 
     QML_ELEMENT
 
     muse::GlobalInject<IProjectConfiguration> configuration;
-    muse::GlobalInject<muse::cloud::IMuseScoreComService> museScoreComService;
-    muse::GlobalInject<muse::IPlatformInteractive> platformInteractive;
     muse::ContextInject<muse::actions::IActionsDispatcher> dispatcher = { this };
 
 public:
     explicit ScoresPageModel(QObject* parent = nullptr);
-
-    int tabIndex() const;
-    void setTabIndex(int index);
 
     enum ViewType {
         Grid = int(IProjectConfiguration::HomeScoresPageViewType::Grid),
@@ -66,10 +58,8 @@ public:
     Q_INVOKABLE void createNewScore();
     Q_INVOKABLE void openOther();
     Q_INVOKABLE void openScore(const QString& scorePath, const QString& displayNameOverride);
-    Q_INVOKABLE void openScoreManager();
 
 signals:
-    void tabIndexChanged();
     void viewTypeChanged();
 };
 }

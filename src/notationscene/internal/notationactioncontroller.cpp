@@ -2752,8 +2752,8 @@ muse::io::path_t NotationActionController::selectStyleFile(bool forLoad)
 {
     muse::io::path_t dir = configuration()->userStylesPath();
     std::string filterName = forLoad
-                             ? muse::trc("notation", "MuseScore style files")
-                             : muse::trc("notation", "MuseScore style file");
+                             ? muse::trc("notation", "Song style files")
+                             : muse::trc("notation", "Song style file");
     std::vector<std::string> filter = { filterName + " (*.mss)" };
     return forLoad
            ? interactive()->selectOpeningFileSync(muse::trc("notation", "Load style"), dir, filter)

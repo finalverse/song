@@ -120,7 +120,7 @@ void ChordSymbolsPageModel::setChordStyle(mu::engraving::ChordStylePreset select
 void ChordSymbolsPageModel::selectChordDescriptionFile()
 {
     muse::io::path_t dir = configuration()->userStylesPath();
-    std::vector<std::string> filter = { muse::trc("notation", "MuseScore chord symbol style files") + " (*.xml)" };
+    std::vector<std::string> filter = { muse::trc("notation", "Song chord symbol style files") + " (*.xml)" };
 
     muse::io::path_t path = interactive()->selectOpeningFileSync(muse::trc("notation", "Load style"), dir, filter);
     if (path.empty()) {

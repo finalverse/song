@@ -247,6 +247,9 @@ jobs:
         SIGNING_IDENTITY: ${{ secrets.MAC_SIGNING_IDENTITY }}
       run: |
         bash ./buildscripts/ci/macos/package.sh
+    - name: Smoke test packaged app
+      run: |
+        bash ./buildscripts/ci/macos/smoke_test.sh applebuild/mscore.app
     - name: Notarize
       if: env.DO_NOTARIZE == 'true'
       env:

@@ -207,9 +207,7 @@ MenuItem* AppMenuModel::makeFileMenu()
         makeSeparator(),
         makeMenuItem("file-save"),
         makeMenuItem("file-save-as"),
-        makeMenuItem("file-save-to-cloud"),
         makeMenu(TranslatableString("appshell/menu/file", "Save o&ther"), makeSaveOtherSubItems()),
-        makeMenu(TranslatableString("appshell/menu/file", "Pu&blish online"), makePublishOnlineSubItems()),
         makeSeparator(),
         makeMenuItem("file-import-pdf"),
         makeMenuItem("file-import-audio-to-score"),
@@ -231,15 +229,6 @@ MenuItemList AppMenuModel::makeSaveOtherSubItems()
     MenuItemList subItems {
         makeMenuItem("file-save-a-copy"),
         makeMenuItem("file-save-selection"),
-    };
-    return subItems;
-}
-
-MenuItemList AppMenuModel::makePublishOnlineSubItems()
-{
-    MenuItemList subItems {
-        makeMenuItem("file-publish"),
-        makeMenuItem("file-share-audio"),
     };
     return subItems;
 }

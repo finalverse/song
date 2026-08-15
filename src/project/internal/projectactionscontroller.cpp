@@ -96,11 +96,7 @@ void ProjectActionsController::init()
     d->onRequest(this, PROJECT_SAVE_AS_COMMAND, [this]() { return saveProject(SaveMode::SaveAs); });
     d->onRequest(this, PROJECT_SAVE_A_COPY_COMMAND, [this]() { return saveProject(SaveMode::SaveCopy); });
     d->onRequest(this, PROJECT_SAVE_SELECTION_COMMAND, [this]() { return saveProject(SaveMode::SaveSelection, SaveLocationType::Local); });
-    d->onRequest(this, PROJECT_SAVE_TO_CLOUD_COMMAND, [this]() { return saveProject(SaveMode::Save, SaveLocationType::Cloud); });
     d->onRequest(this, PROJECT_SAVE_AT_COMMAND, [this](const rcommand::CommandQuery& query) { return saveProjectAt(query); });
-
-    d->onRequest(this, PROJECT_PUBLISH_COMMAND, [this]() { return publish(); });
-    d->onRequest(this, PROJECT_SHARED_AUDIO_COMMAND, [this]() { return sharedAudio(); });
 
     d->onRequest(this, PROJECT_EXPORT_COMMAND, [this]() { return exportScore(); });
     d->onRequest(this, PROJECT_IMPORT_PDF_COMMAND, [this]() { return importPdf(); });
@@ -122,10 +118,7 @@ void ProjectActionsController::init()
             { "file-save-as", PROJECT_SAVE_AS_COMMAND, {} },
             { "file-save-a-copy", PROJECT_SAVE_A_COPY_COMMAND, {} },
             { "file-save-selection", PROJECT_SAVE_SELECTION_COMMAND, {} },
-            { "file-save-to-cloud", PROJECT_SAVE_TO_CLOUD_COMMAND, {} },
             { "file-save-at", PROJECT_SAVE_AT_COMMAND, make_conv({ { "path", param<io::path_t> } }) },
-            { "file-publish", PROJECT_PUBLISH_COMMAND, {} },
-            { "file-share-audio", PROJECT_SHARED_AUDIO_COMMAND, {} },
             { "file-export", PROJECT_EXPORT_COMMAND, {} },
             { "file-import-pdf", PROJECT_IMPORT_PDF_COMMAND, {} },
             { "file-import-audio-to-score", PROJECT_IMPORT_AUDIO_TO_SCORE_COMMAND, {} },
@@ -2047,7 +2040,7 @@ async::Promise<io::path_t> ProjectActionsController::selectScoreOpeningFile() co
                          "*.ove *.scw *.bmw *.bww *.gtp *.gp3 *.gp4 *.gp5 *.gpx *.gp *.ptb *.mei *.mnx *.json *.tef *.mscx *.mscs *.mscz~";
 
     std::vector<std::string> filter { muse::trc("project", "All supported files") + " (" + allExt + ")",
-                                      muse::trc("project", "MuseScore files") + " (*.mscz)",
+                                      muse::trc("project", "Song scores (MuseScore compatible)") + " (*.mscz)",
                                       muse::trc("project", "MusicXML files") + " (*.mxl *.musicxml *.xml)",
                                       muse::trc("project", "MIDI files") + " (*.mid *.midi *.kar)",
                                       muse::trc("project", "MNX files (experimental)") + " (*.mnx *.json)",
@@ -2060,9 +2053,9 @@ async::Promise<io::path_t> ProjectActionsController::selectScoreOpeningFile() co
                                       muse::trc("project", "Power Tab Editor files (experimental)") + " (*.ptb)",
                                       muse::trc("project", "MEI files") + " (*.mei)",
                                       muse::trc("project", "TablEdit files (experimental)") + " (*.tef)",
-                                      muse::trc("project", "Uncompressed MuseScore folders (experimental)") + " (*.mscx)",
-                                      muse::trc("project", "MuseScore developer files") + " (*.mscs)",
-                                      muse::trc("project", "MuseScore backup files") + " (*.mscz~)" };
+                                      muse::trc("project", "Uncompressed Song score folders (experimental)") + " (*.mscx)",
+                                      muse::trc("project", "Song developer scores") + " (*.mscs)",
+                                      muse::trc("project", "Song score backups") + " (*.mscz~)" };
 
     muse::io::path_t defaultDir = configuration()->lastOpenedProjectsPath();
 

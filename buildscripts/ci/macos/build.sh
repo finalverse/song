@@ -18,7 +18,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-echo "Build MuseScore"
+echo "Build Finalverse Song Studio"
 #set -x
 trap 'echo Build failed; exit 1' ERR
 SKIP_ERR=true

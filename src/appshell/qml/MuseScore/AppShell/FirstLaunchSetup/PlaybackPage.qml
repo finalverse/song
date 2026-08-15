@@ -29,21 +29,15 @@ import MuseScore.AppShell
 
 Page {
     title: qsTrc("appshell/gettingstarted", "Playback")
-    explanation: qsTrc("appshell/gettingstarted", "Discover new sound libraries in MuseHub and enjoy realistic score playback")
+    explanation: qsTrc("appshell/gettingstarted", "Hear expressive playback while you compose, with support for downloadable sound libraries")
 
     titleContentSpacing: 12
-
-    extraButtonTitle: qsTrc("appshell/gettingstarted", "Watch video")
-
-    onExtraButtonClicked: {
-        Qt.openUrlExternally("https://youtu.be/L8OdWHOjL8c")
-    }
 
     Image {
         id: image
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
-        source: "resources/MuseSounds.png"
+        source: "resources/song-playback.svg"
         sourceSize: Qt.size(width * Screen.devicePixelRatio, height * Screen.devicePixelRatio)
 
         layer.enabled: ui.isEffectsAllowed
