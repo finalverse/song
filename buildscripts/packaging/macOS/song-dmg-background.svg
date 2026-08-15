@@ -19,10 +19,11 @@
   <path d="M0 180C205 140 398 144 594 184C790 224 978 225 1178 180" stroke="url(#songGradient)" stroke-width="5" opacity="0.95"/>
 
   <g transform="translate(48 23) scale(0.105)">
-    <path d="M731 291C667 224 563 196 460 214C345 234 272 298 272 377C272 458 348 493 482 515C622 538 749 566 749 664C749 755 655 817 530 826C416 835 316 794 263 725"
-          stroke="url(#songGradient)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="731" cy="291" r="37" fill="#7C5CFF"/>
-    <circle cx="263" cy="725" r="37" fill="#2DE2C5"/>
+    <ellipse cx="306" cy="752" rx="132" ry="91" transform="rotate(-16 306 752)" fill="url(#songGradient)"/>
+    <path d="M390 716C510 676 540 600 492 528C447 461 414 405 450 340C498 253 620 226 736 282"
+          stroke="url(#songGradient)" stroke-width="86" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M710 237C810 258 864 337 841 443C795 389 738 362 666 371C691 331 705 285 710 237Z"
+          fill="url(#songGradient)"/>
   </g>
   <text x="150" y="102" fill="#F7F7F2" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="68" font-weight="700" letter-spacing="7">SONG</text>
   <text x="155" y="140" fill="#C8C4D8" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="20" font-weight="600" letter-spacing="5">BY FINALVERSE</text>

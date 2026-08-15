@@ -1,6 +1,6 @@
 <svg width="1040" height="580" viewBox="0 0 1040 580" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="songGradient" x1="144" y1="104" x2="844" y2="504" gradientUnits="userSpaceOnUse">
+    <linearGradient id="songGradient" x1="735" y1="235" x2="250" y2="835" gradientUnits="userSpaceOnUse">
       <stop stop-color="#7C5CFF"/>
       <stop offset="0.52" stop-color="#FF5C8A"/>
       <stop offset="1" stop-color="#2DE2C5"/>
@@ -23,10 +23,11 @@
   </g>
 
   <g transform="translate(90 47) scale(0.18)">
-    <path d="M731 291C667 224 563 196 460 214C345 234 272 298 272 377C272 458 348 493 482 515C622 538 749 566 749 664C749 755 655 817 530 826C416 835 316 794 263 725"
-          stroke="url(#songGradient)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="731" cy="291" r="37" fill="#7C5CFF"/>
-    <circle cx="263" cy="725" r="37" fill="#2DE2C5"/>
+    <ellipse cx="306" cy="752" rx="132" ry="91" transform="rotate(-16 306 752)" fill="url(#songGradient)"/>
+    <path d="M390 716C510 676 540 600 492 528C447 461 414 405 450 340C498 253 620 226 736 282"
+          stroke="url(#songGradient)" stroke-width="86" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M710 237C810 258 864 337 841 443C795 389 738 362 666 371C691 331 705 285 710 237Z"
+          fill="url(#songGradient)"/>
   </g>
 
   <text x="245" y="130" fill="#F7F7F2" font-family="Avenir Next, Segoe UI, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="5">PLAYBACK</text>

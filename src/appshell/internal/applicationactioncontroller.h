@@ -43,6 +43,7 @@
 #include "extensions/iextensioninstaller.h"
 #include "context/iglobalcontext.h"
 #include "context/iuicontextresolver.h"
+#include "global/iapplicationeventcontroller.h"
 
 class QDragEnterEvent;
 class QDragMoveEvent;
@@ -56,6 +57,7 @@ class ApplicationActionController : public QObject, public muse::Contextable, pu
     muse::GlobalInject<IAppShellConfiguration> configuration;
     muse::GlobalInject<muse::languages::ILanguagesService> languagesService;
     muse::GlobalInject<muse::IApplication> application;
+    muse::GlobalInject<muse::IApplicationEventController> applicationEventController;
     muse::GlobalInject<muse::IPlatformInteractive> platformInteractive;
     muse::ContextInject<muse::extensions::IExtensionInstaller> extensionInstaller = { this };
     muse::ContextInject<muse::ui::IUiActionsRegister> actionsRegister = { this };

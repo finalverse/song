@@ -43,6 +43,16 @@ using namespace muse::actions;
 void ApplicationActionController::preInit()
 {
     qApp->installEventFilter(this);
+
+#ifdef Q_OS_MACOS
+    // Replay file-open requests that macOS delivered before this context and
+    // its project controller were initialized. Future requests are handled by
+    // this event filter directly.
+    const std::vector<std::unique_ptr<QEvent> > pendingEvents = applicationEventController()->takePendingEvents();
+    for (const std::unique_ptr<QEvent>& event : pendingEvents) {
+        eventFilter(qApp, event.get());
+    }
+#endif
 }
 
 void ApplicationActionController::init()

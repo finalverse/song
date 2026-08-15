@@ -86,6 +86,7 @@ private:
 
     std::string m_startupTypeStr;
     project::ProjectFile m_startupScoreFile;
+    bool m_startupStarted = false;
     bool m_startupCompleted = false;
     size_t m_activeUpdateCheckCount = 0;
 };

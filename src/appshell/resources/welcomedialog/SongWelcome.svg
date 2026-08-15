@@ -4,7 +4,7 @@
       <stop stop-color="#17122B"/>
       <stop offset="1" stop-color="#090B14"/>
     </linearGradient>
-    <linearGradient id="welcomeMark" x1="162" y1="124" x2="492" y2="514" gradientUnits="userSpaceOnUse">
+    <linearGradient id="welcomeMark" x1="735" y1="235" x2="250" y2="835" gradientUnits="userSpaceOnUse">
       <stop stop-color="#7C5CFF"/>
       <stop offset="0.52" stop-color="#FF5C8A"/>
       <stop offset="1" stop-color="#2DE2C5"/>
@@ -23,10 +23,13 @@
     <path d="M539 381C697 342 837 356 951 397C1031 426 1090 426 1144 406"/>
     <path d="M539 466C697 427 837 441 951 482C1031 511 1090 511 1144 491"/>
   </g>
-  <path d="M438 197C400 157 340 140 280 151C213 162 171 199 171 245C171 292 215 312 294 325C375 338 449 354 449 412C449 464 394 500 320 505C253 510 195 486 164 445"
-        stroke="url(#welcomeMark)" stroke-width="61" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="438" cy="197" r="21" fill="#7C5CFF"/>
-  <circle cx="164" cy="445" r="21" fill="#2DE2C5"/>
+  <g transform="translate(70 70) scale(0.45)">
+    <ellipse cx="306" cy="752" rx="132" ry="91" transform="rotate(-16 306 752)" fill="url(#welcomeMark)"/>
+    <path d="M390 716C510 676 540 600 492 528C447 461 414 405 450 340C498 253 620 226 736 282"
+          stroke="url(#welcomeMark)" stroke-width="86" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M710 237C810 258 864 337 841 443C795 389 738 362 666 371C691 331 705 285 710 237Z"
+          fill="url(#welcomeMark)"/>
+  </g>
   <text x="579" y="274" fill="#F7F7F2" font-family="Inter, Avenir Next, Helvetica Neue, sans-serif" font-size="88" font-weight="720" letter-spacing="8">SONG</text>
   <text x="585" y="328" fill="#B6B4C5" font-family="Inter, Avenir Next, Helvetica Neue, sans-serif" font-size="25" font-weight="600" letter-spacing="7">BY FINALVERSE</text>
   <text x="585" y="405" fill="#F7F7F2" font-family="Inter, Avenir Next, Helvetica Neue, sans-serif" font-size="29" font-weight="520">From an idea to a living score.</text>

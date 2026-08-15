@@ -1,14 +1,19 @@
 <svg width="900" height="240" viewBox="0 0 900 240" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="lockupMark" x1="42" y1="26" x2="194" y2="208" gradientUnits="userSpaceOnUse">
+    <linearGradient id="lockupMark" x1="735" y1="235" x2="250" y2="835" gradientUnits="userSpaceOnUse">
       <stop stop-color="#7C5CFF"/>
       <stop offset="0.52" stop-color="#FF5C8A"/>
       <stop offset="1" stop-color="#2DE2C5"/>
     </linearGradient>
   </defs>
   <rect x="8" y="8" width="224" height="224" rx="52" fill="#090B14"/>
-  <path d="M177 70C159 51 129 43 101 48C68 54 48 72 48 94C48 117 69 127 107 133C146 139 183 147 183 175C183 201 156 218 121 220C88 223 60 211 45 191"
-        stroke="url(#lockupMark)" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -14)"/>
+  <g transform="translate(8 8) scale(0.21875)">
+    <ellipse cx="306" cy="752" rx="132" ry="91" transform="rotate(-16 306 752)" fill="url(#lockupMark)"/>
+    <path d="M390 716C510 676 540 600 492 528C447 461 414 405 450 340C498 253 620 226 736 282"
+          stroke="url(#lockupMark)" stroke-width="86" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M710 237C810 258 864 337 841 443C795 389 738 362 666 371C691 331 705 285 710 237Z"
+          fill="url(#lockupMark)"/>
+  </g>
   <text x="278" y="139" fill="#171923" font-family="Inter, Avenir Next, Helvetica Neue, sans-serif" font-size="118" font-weight="720" letter-spacing="8">SONG</text>
   <text x="286" y="190" fill="#646777" font-family="Inter, Avenir Next, Helvetica Neue, sans-serif" font-size="27" font-weight="600" letter-spacing="7">BY FINALVERSE</text>
 </svg>

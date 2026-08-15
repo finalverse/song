@@ -1,8 +1,8 @@
 # Finalverse Song brand guidelines
 
-## Brand idea: the living score
+## Brand idea: the Song Note
 
-Song turns musical intent into structured music that can keep evolving. The mark is a continuous “S” drawn like a waveform: one gesture connecting composition, performance, notation, and AI collaboration.
+Song turns musical intent into structured music that can keep evolving. The mark is a single eighth note drawn as a flowing “S”: its notehead represents a musical idea, its curved stem represents an editable creative path, and its flag points toward performance. It should read as both a note and the initial for Song without relying on a literal letterform.
 
 ## Naming
 
@@ -53,10 +53,11 @@ The primary gradient runs from Resonance through Chorus to Signal. Use it on the
 
 ## Logo usage
 
-- Keep clear space around the mark equal to the diameter of an endpoint node.
+- Keep clear space around the mark equal to half the height of its notehead.
 - Use the full-color mark on Midnight, Deep Violet, Score Paper, black, or white.
 - At small sizes, use the mark without the wordmark.
-- Do not add music notes, robot heads, sparkles, or a separate “AI” badge to the mark.
+- Preserve the single-note silhouette; do not add a second note, staff, robot head, sparkle, or separate “AI” badge to the mark.
+- Do not substitute a font glyph or emoji for the drawn Song Note.
 - Do not recolor individual parts of the mark outside the approved gradient or one-color variants.
 
 ## Typography
