@@ -103,7 +103,7 @@ else
     exit 1
 fi
 
-if ! version_exists "${older_version}"; then
+if ! version_exists "${older_version}" && ! version_exists "${VERSION}" '*'; then
     all_tags="$(git tag --list)"
     if [[ "${ALLOW_FIRST_RELEASE}" == 'true' && -z "${all_tags}" ]]; then
         echo >&2 "$o: Creating the first release tag in this repository."
