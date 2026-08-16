@@ -34,8 +34,8 @@ ColumnLayout {
     property bool isApplyEdwin: true
     property bool isRemapPercussion: true
 
-    function activateNavigation()   {
-        applyBtn.navigation.requestActive()
+    function activateNavigation() {
+        lelandOption.navigation.requestActive()
         accessibleInfo.readInfo()
     }
 
@@ -55,7 +55,7 @@ ColumnLayout {
         accessibleParent: root.navigationPanel.accessible
         visualItem: root
         role: MUAccessible.Button
-        name: headerTitle.text + ". " + headerSubtitle.text + " " + applyBtn.text
+        name: headerTitle.text + ". " + headerSubtitle.text + " " + lelandOption.text
 
         function readInfo() {
             accessibleInfo.ignored = false
