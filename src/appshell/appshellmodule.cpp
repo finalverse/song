@@ -22,6 +22,7 @@
 
 #include "appshellmodule.h"
 
+#include <QCoreApplication>
 #include <QQmlEngine>
 #include <string>
 
@@ -96,7 +97,7 @@ void AppShellModule::onAllInited(const IApplication::RunMode&)
 {
     //! NOTE: process QEvent::FileOpen as early as possible if it was postponed
 #ifdef Q_OS_MACOS
-    qApp->processEvents();
+    QCoreApplication::sendPostedEvents(nullptr, QEvent::FileOpen);
 #endif
 }
 

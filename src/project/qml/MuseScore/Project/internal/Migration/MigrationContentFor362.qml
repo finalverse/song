@@ -33,7 +33,7 @@ ColumnLayout {
     property bool isRemapPercussion: true
 
     function activateNavigation() {
-        applyBtn.navigation.requestActive()
+        percussionOption.navigation.requestActive()
         accessibleInfo.readInfo()
     }
 
@@ -51,7 +51,7 @@ ColumnLayout {
         accessibleParent: root.navigationPanel.accessible
         visualItem: root
         role: MUAccessible.Button
-        name: headerTitle.text + ". " + headerSubtitle.text + " " + applyBtn.text
+        name: headerTitle.text + ". " + headerSubtitle.text + " " + percussionOption.text
 
         function readInfo() {
             accessibleInfo.ignored = false
